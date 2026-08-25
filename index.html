@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наташа — Портфолио</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Видео на заднем плане (hero-background) -->
+    <div class="video-bg-container">
+        <video class="video-bg" autoplay loop muted playsinline>
+            <source src="images/fire-bg.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Основной контент Hero секции -->
+    <header class="hero-header">
+        <div class="grid-container">
+            <!-- Левая колонка: Кнопка «Все проекты» -->
+            <div class="col-left">
+                <a href="projects.html" class="nav-btn">Все проекты</a>
+            </div>
+
+            <!-- Центральная колонка: Текст-приветствие -->
+            <div class="col-center">
+                <h1 class="greeting-text">
+                    Привет, Я — Наташа<br>
+                    <span class="greeting-tag">{графический и бренд-дизайнер}</span>
+                </h1>
+            </div>
+
+            <!-- Правая колонка: Статичный текст «6 лет опыта» -->
+            <div class="col-right">
+                <span class="experience-text">6 лет опыта</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Центральный аватар -->
+    <main class="hero-main">
+        <div class="avatar-wrapper">
+            <img src="images/avatar.png" alt="Аватар Наташи" class="avatar-img">
+        </div>
+    </main>
+</body>
+</html>

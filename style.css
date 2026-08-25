@@ -1,0 +1,171 @@
+/* Подключение шрифта SF UI Display */
+@font-face {
+    font-family: 'SF UI Display';
+    src: local('SF UI Display Regular'), local('SF-UI-Display-Regular'),
+         url('https://fonts.cdnfonts.com/s/14897/SFUIDisplay-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF UI Display';
+    src: local('SF UI Display Semibold'), local('SF-UI-Display-Semibold'),
+         url('https://fonts.cdnfonts.com/s/14897/SFUIDisplay-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+/* Общие стили и сброс */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Так как это hero-экран на 100vh */
+    font-family: 'SF UI Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #242424; /* Запасной черный цвет из дизайн-системы */
+    color: #ffffff;
+}
+
+/* 1. Видео на весь экран (100vh) */
+.video-bg-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 2. 12-колончатая сетка (Stretch; Margin 20px; Gutter 16px) */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 16px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: calc(100% - 40px); /* 100% минус боковые margin по 20px */
+    height: 100%;
+    align-items: flex-start;
+}
+
+/* Распределение колонок для хедера */
+.hero-header {
+    position: absolute;
+    top: 40px; /* Отступ сверху */
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+/* Левая часть: кнопка занимает 3 колонки */
+.col-left {
+    grid-column: span 3;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Центральная часть: приветствие занимает 6 колонок */
+.col-center {
+    grid-column: span 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Правая часть: опыт работы занимает 3 колонки */
+.col-right {
+    grid-column: span 3;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* 3. Оформление текста */
+
+/* Акцентный цвет текста: #00E6A3 */
+.nav-btn {
+    font-size: 36px;
+    font-weight: 600; /* semibold */
+    color: #00E6A3;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.nav-btn:hover {
+    opacity: 0.8;
+}
+
+.experience-text {
+    font-size: 36px;
+    font-weight: 600; /* semibold */
+    color: #00E6A3;
+    user-select: none;
+}
+
+.greeting-text {
+    font-size: 28px;
+    font-weight: 400; /* regular */
+    line-height: 1.35;
+    color: #00E6A3;
+}
+
+.greeting-tag {
+    /* Дополнительное выделение для фигурных скобок и текста внутри */
+    display: block;
+}
+
+/* 4. Центральный аватар (.avatar-wrapper) */
+.hero-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+    pointer-events: none; /* Пропускаем клики, если под аватаром есть ссылки */
+}
+
+.avatar-wrapper {
+    width: 658px;
+    max-width: 90vw; /* Адаптивность для узких экранов */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto; /* Возвращаем кликабельность самому аватару */
+}
+
+.avatar-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Дополнительные параметры дизайн-системы для общего понимания (скругления и тени) */
+.case-card {
+    border-radius: 24px; /* Внешнее скругление */
+    box-shadow: -30px 20px 30px rgba(0, 0, 0, 0.25); /* x -30, y 20, blur 30, #000000 25% */
+}
+
+.case-inner-badge {
+    border-radius: 12px; /* Плашки внутри */
+}
