@@ -34,12 +34,12 @@
             </div>
         </header>
 
-        <!-- Central avatar -->
+        <!-- Центральный персонаж (Кот) -->
         <div class="avatar-wrapper">
             <img src="images/avatar.png" alt="Персонаж Кот" class="avatar-img">
         </div>
 
-        <!-- Cards container -->
+        <!-- Контейнер с 8 плашками проектов -->
         <div class="cards-container">
             <!-- Плашка 1: SMART -->
             <div class="project-card card-smart">
@@ -106,7 +106,7 @@
             </div>
         </div>
 
-        <!-- Подвал -->
+        <!-- Подвал с тегами и капсулой -->
         <footer class="hero-footer">
             <div class="footer-left">
                 <span class="tag-text">{брендинг}</span>
@@ -155,6 +155,7 @@
 
     <!-- Интерактивные скрипты -->
     <script>
+        // 1. Движение свечения за курсором
         const glow = document.getElementById('cursor-glow');
         if (glow) {
             document.addEventListener('mousemove', (e) => {
@@ -162,6 +163,7 @@
             });
         }
 
+        // 2. Смена темы (фона и свечения) при клике на свободную область экрана
         document.addEventListener('click', (e) => {
             if (
                 e.target.closest('a') || 
