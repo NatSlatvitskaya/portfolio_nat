@@ -22,20 +22,13 @@
     padding: 0;
 }
 
-/* 
-   РЕШЕНИЕ ДЛЯ КАСТОМНОГО КУРСОРA (УВЕЛИЧЕН В 2 РАЗА):
-   - Задаем курсор в виде картинки cursor.png на уровне всего сайта.
-   - Свойства 32 32 задают координаты клика по центру новой картинки размером 64x64px.
+/* РЕШЕНИЕ ПРОБЛЕМЫ С ФОНОМ:
+   Переносим темный цвет на тег html, чтобы фоновая картинка внутри body не перекрывалась им.
 */
-html, body, a, button, .project-card, .capsule-btn {
-    cursor: url('images/cursor.png') 32 32, auto !important;
-}
-
 html {
     width: 100%;
     height: 100%;
     background-color: #0b1210; /* Темная подложка */
-    overflow-x: hidden;
 }
 
 body {
@@ -44,9 +37,9 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'SF UI Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: transparent;
+    background-color: transparent; /* Делаем body прозрачным */
     color: #ffffff;
-    position: relative;
+    overflow-x: hidden;
 }
 
 /* Статичный фон с паттерном */
@@ -59,35 +52,8 @@ body {
     background-image: url('images/fire-bg.jpg');
     background-size: cover;
     background-position: center;
-    opacity: 0.85;
-    z-index: -2; 
-    pointer-events: none;
-    transition: background-image 0.5s ease-in-out; /* Плавный переход при смене картинок */
-}
-
-/* Альтернативный паттерн фона, который активируется при клике */
-.bg-pattern.alt-bg {
-    background-image: url('images/fire-bg2.jpg');
-}
-
-/* 
-   УСИЛЕНИЕ СВЕЧЕНИЯ ЗА КУРСОРОМ В 2 РАЗА:
-   - Увеличили плотность цвета в центре градиента: с 0.18 до 0.36
-   - Увеличили плотность на среднем расстоянии: с 0.04 до 0.10
-*/
-.cursor-glow {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 600px; 
-    height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(32, 234, 167, 0.36) 0%, rgba(32, 234, 167, 0.10) 40%, rgba(32, 234, 167, 0) 70%);
-    pointer-events: none;
-    z-index: -1; 
-    will-change: transform;
-    transform: translate3d(-1000px, -1000px, 0); 
-    transition: opacity 0.3s ease;
+    opacity: 0.85; /* Яркий выразительный паттерн */
+    z-index: -1; /* Находится за всем контентом body, но перед фоном html */
 }
 
 /* Основной контейнер-обертка */
@@ -133,25 +99,23 @@ body {
     justify-content: flex-end;
 }
 
-/* Тексты в шапке (22px) */
+/* Тексты в шапке (22px по ТЗ) */
 .nav-btn {
     font-size: 22px;
     font-weight: 600;
     color: #F98FC8;
     text-decoration: none;
-    transition: opacity 0.2s ease, color 0.2s ease;
+    transition: opacity 0.2s ease;
 }
 
 .nav-btn:hover {
     opacity: 0.8;
 }
 
-/* «6 лет опыта» как ссылка */
 .experience-text {
     font-size: 22px;
     font-weight: 600;
     color: #F98FC8;
-    text-decoration: none;
 }
 
 .greeting-text {
@@ -161,7 +125,7 @@ body {
     color: #20EAA7;
 }
 
-/* графический дизайнер (18px) */
+/* графический дизайнер (18px по ТЗ) */
 .greeting-tag {
     display: block;
     font-size: 18px;
@@ -173,7 +137,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 380px;
+    width: 380px; /* Базовый размер для экранов 1920 */
     max-width: 75vw;
     display: flex;
     justify-content: center;
@@ -189,7 +153,7 @@ body {
     filter: drop-shadow(0 0 20px rgba(32, 234, 167, 0.15));
 }
 
-/* --- КОНТЕЙНЕР ПЛАШЕК ПРОЕКТОВ --- */
+/* --- КОНТЕЙНЕР ПЛАШЕК ПРОЕКТОВ (ДЕСКТОП 1920) --- */
 .cards-container {
     position: absolute;
     top: 0;
@@ -206,55 +170,58 @@ body {
     width: 130px;
     height: 130px;
     pointer-events: auto;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 7;
 }
 
 .card-inner {
     width: 100%;
     height: 100%;
-    border: none;
+    border: 3.5px solid #20EAA7;
     border-radius: 12px;
-    background-color: #20EAA7;
+    background-color: #0b1210;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 8px;
     overflow: hidden;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Внутреннее превью */
 .card-preview {
     flex-grow: 1;
-    background-color: #0b1210;
+    background-color: #04271c;
     border-radius: 6px;
     margin-bottom: 6px;
 }
 
-/* Название проекта (Размер шрифта 18px) */
 .card-label {
-    font-size: 18px;
+    font-size: 10px;
     font-weight: 600;
-    color: #242424;
+    color: #20EAA7;
     text-transform: uppercase;
     text-align: center;
+    transition: color 0.3s ease;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.2;
 }
 
 /* ЭФФЕКТ НА ХОВЕРЕ */
-.project-card:hover .card-inner {
-    background-color: #F98FC8;
-    box-shadow: 0 10px 25px rgba(249, 143, 200, 0.35);
-    transform: scale(1.5);
-}
-
 .project-card:hover {
+    transform: scale(1.5);
     z-index: 20;
 }
 
+.project-card:hover .card-inner {
+    border-color: #F98FC8;
+    box-shadow: 0 10px 25px rgba(249, 143, 200, 0.35);
+}
+
+.project-card:hover .card-label {
+    color: #F98FC8;
+}
 
 /* 
    КООРДИНАТЫ ПЛАШЕК ДЛЯ ЭКРАНОВ 1920 (Симметричная сетка)
@@ -325,7 +292,7 @@ body {
     justify-content: center;
 }
 
-/* Направления внизу экрана (18px) */
+/* Направления внизу экрана (18px по ТЗ) */
 .tag-text {
     font-size: 18px;
     color: #20EAA7;
@@ -497,13 +464,8 @@ body {
         transform: none;
     }
     
-    .project-card:hover .card-inner {
+    .project-card:hover {
         transform: scale(1.15);
-    }
-    
-    /* Уменьшаем шрифт плашек для планшетов */
-    .card-label {
-        font-size: 14px;
     }
 
     .hero-footer {
@@ -559,12 +521,11 @@ body {
         border-width: 2px;
     }
     
-    /* Уменьшаем шрифт плашек для смартфонов, чтобы влезал текст */
     .card-label {
-        font-size: 12px;
+        font-size: 9px;
     }
 
-    .project-card:hover .card-inner {
+    .project-card:hover {
         transform: scale(1.08);
     }
 
