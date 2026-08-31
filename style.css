@@ -40,14 +40,14 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('images/fire-bg.jpg'); /* Убедитесь, что файл называется так же в папке images */
+    background-image: url('images/fire-bg.jpg');
     background-size: cover;
     background-position: center;
-    opacity: 0.45;
+    opacity: 0.85; /* Повысили непрозрачность до 85%, чтобы паттерн зебры был четко виден как в Figma */
     z-index: -2;
 }
 
-/* Основной контейнер-обертка для управления структурой */
+/* Основной контейнер-обертка */
 .portfolio-container {
     position: relative;
     width: 100%;
@@ -90,9 +90,9 @@ body, html {
     justify-content: flex-end;
 }
 
-/* Тексты в шапке */
+/* Тексты в шапке (22px по ТЗ) */
 .nav-btn {
-    font-size: 32px;
+    font-size: 22px;
     font-weight: 600;
     color: #F98FC8;
     text-decoration: none;
@@ -104,20 +104,22 @@ body, html {
 }
 
 .experience-text {
-    font-size: 32px;
+    font-size: 22px;
     font-weight: 600;
     color: #F98FC8;
 }
 
 .greeting-text {
-    font-size: 28px;
+    font-size: 22px;
     font-weight: 400;
     line-height: 1.35;
     color: #20EAA7;
 }
 
+/* графический дизайнер (18px по ТЗ) */
 .greeting-tag {
     display: block;
+    font-size: 18px;
 }
 
 /* --- ЦЕНТРАЛЬНЫЙ ПЕРСОНАЖ (КОТ) --- */
@@ -126,7 +128,7 @@ body, html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 380px; /* Уменьшили базовый размер для десктопа */
+    width: 380px; /* Базовый размер для экранов 1920 */
     max-width: 75vw;
     display: flex;
     justify-content: center;
@@ -139,7 +141,7 @@ body, html {
     width: 100%;
     height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 0 20px rgba(32, 234, 167, 0.2));
+    filter: drop-shadow(0 0 20px rgba(32, 234, 167, 0.15));
 }
 
 /* --- КОНТЕЙНЕР ПЛАШЕК ПРОЕКТОВ (ДЕСКТОП) --- */
@@ -212,46 +214,48 @@ body, html {
     color: #F98FC8;
 }
 
-/* КООРДИНАТЫ ПЛАШЕК ДЛЯ ЭКРАНОВ 1920 и 1440 */
+/* 
+   МАТЕМАТИЧЕСКИ ТОЧНЫЕ КООРДИНАТЫ ИЗ ФИГМЫ (Symmetric Layout)
+   Левые плашки позиционируются через left, правые через right
+*/
+/* --- Топ-ряд (22%) --- */
 .card-smart {
-    top: 17%;
+    top: 22%;
     left: 18%;
 }
-
-.card-memoria {
-    top: 40%;
-    left: 26%;
-}
-
-.card-lidia {
-    top: 44%;
-    left: 2%;
-}
-
-.card-agly {
-    top: 66%;
-    left: 18%;
-}
-
 .card-project-tr {
-    top: 17%;
-    left: 90%;
+    top: 22%;
+    right: 18%; /* Симметрично SMART */
 }
 
+/* --- Средний ряд (45%) --- */
+.card-lidia {
+    top: 45%;
+    left: 8%; /* Крайний левый */
+}
+.card-memoria {
+    top: 45%;
+    left: 28%; /* Внутренний левый (ближе к коту) */
+}
 .card-slet {
-    top: 24%;
-    left: 68%;
+    top: 45%;
+    right: 28%; /* Внутренний правый (ближе к коту, симметрично MEMORIA) */
 }
-
 .card-smarty {
-    top: 40%;
-    left: 83%;
+    top: 45%;
+    right: 8%; /* Крайний правый, симметрично LIDIA */
 }
 
-.card-project-br {
-    top: 66%;
-    left: 68%;
+/* --- Нижний ряд (68%) --- */
+.card-agly {
+    top: 68%;
+    left: 18%;
 }
+.card-project-br {
+    top: 68%;
+    right: 18%; /* Симметрично AGLY */
+}
+
 
 /* --- ПОДВАЛ (FOOTER) --- */
 .hero-footer {
@@ -281,8 +285,9 @@ body, html {
     justify-content: center;
 }
 
+/* Направления внизу экрана (18px по ТЗ) */
 .tag-text {
-    font-size: 24px;
+    font-size: 18px;
     color: #20EAA7;
     font-weight: 400;
 }
@@ -338,41 +343,26 @@ body, html {
 
 /* --- НОУТБУКИ 15.6" / Экраны до 1600px --- */
 @media (max-width: 1600px) {
-    .portfolio-container {
-        padding: 30px 20px;
-    }
-    
-    .nav-btn, .experience-text {
-        font-size: 26px;
-    }
-    
-    .greeting-text {
-        font-size: 24px;
-    }
-    
-    /* Делаем кота аккуратнее для ноутбуков, чтобы не был огромным */
+    /* Делаем кота аккуратнее для ноутбуков (290px по ТЗ), чтобы не перекрывал плашки */
     .avatar-wrapper {
         width: 290px;
     }
     
-    .tag-text {
-        font-size: 20px;
-    }
+    /* Слегка сдвигаем плашки к краям, чтобы они идеально обрамляли кота 290px */
+    .card-smart { top: 22%; left: 20%; }
+    .card-project-tr { top: 22%; right: 20%; }
     
+    .card-lidia { top: 45%; left: 8%; }
+    .card-memoria { top: 45%; left: 29%; }
+    .card-slet { top: 45%; right: 29%; }
+    .card-smarty { top: 45%; right: 8%; }
+    
+    .card-agly { top: 68%; left: 20%; }
+    .card-project-br { top: 68%; right: 20%; }
+
     .footer-left, .footer-right {
-        gap: 50px;
+        gap: 60px;
     }
-    
-    /* Сдвигаем плашки ближе к центру, чтобы они идеально обрамляли кота */
-    .card-smart { top: 18%; left: 20%; }
-    .card-memoria { top: 40%; left: 27%; }
-    .card-lidia { top: 44%; left: 6%; }
-    .card-agly { top: 64%; left: 20%; }
-    
-    .card-project-tr { top: 18%; left: 82%; }
-    .card-slet { top: 24%; left: 66%; }
-    .card-smarty { top: 40%; left: 73%; }
-    .card-project-br { top: 64%; left: 82%; }
 }
 
 /* --- ПЛАНШЕТЫ (до 900px) --- */
@@ -403,14 +393,6 @@ body, html {
     .header-right {
         justify-content: flex-end;
     }
-    
-    .nav-btn, .experience-text {
-        font-size: 22px;
-    }
-    
-    .greeting-text {
-        font-size: 20px;
-    }
 
     .avatar-wrapper {
         position: relative;
@@ -421,6 +403,7 @@ body, html {
         width: 240px;
     }
 
+    /* Сетка в 2 колонки вокруг кота */
     .cards-container {
         position: relative;
         display: grid;
@@ -459,10 +442,6 @@ body, html {
     .footer-center {
         order: 2;
     }
-    
-    .tag-text {
-        font-size: 16px;
-    }
 }
 
 /* --- СМАРТФОНЫ (до 480px) --- */
@@ -480,14 +459,6 @@ body, html {
     
     .header-center {
         order: unset;
-    }
-
-    .nav-btn, .experience-text {
-        font-size: 18px;
-    }
-
-    .greeting-text {
-        font-size: 16px;
     }
 
     .avatar-wrapper {
@@ -531,16 +502,8 @@ body, html {
         gap: 10px;
     }
 
-    .tag-text {
-        font-size: 14px;
-    }
-
     .social-capsule {
         padding: 8px 16px;
         gap: 10px;
-    }
-    
-    .cv-btn {
-        font-size: 15px;
     }
 }
