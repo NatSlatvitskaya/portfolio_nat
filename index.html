@@ -10,6 +10,9 @@
     <!-- Статичный фон с паттерном -->
     <div class="bg-pattern"></div>
 
+    <!-- Интерактивное свечение за курсором -->
+    <div class="cursor-glow" id="cursor-glow"></div>
+
     <div class="portfolio-container">
         <!-- Шапка (Header) -->
         <header class="hero-header">
@@ -24,7 +27,7 @@
                     </h1>
                 </div>
                 <div class="header-right">
-                    <!-- Сделали «6 лет опыта» ссылкой на страницу обо мне -->
+                    <!-- Ссылка «6 лет опыта» на страницу обо мне -->
                     <a href="about.html" class="nav-btn experience-text">6 лет опыта</a>
                 </div>
             </div>
@@ -133,7 +136,7 @@
                             <path d="M22 2 11 13"/>
                         </svg>
                     </a>
-                    <a href="/cdn-cgi/l/email-protection#7c19041d110c10193c111d1510521f1311" class="capsule-btn icon-btn" aria-label="Email">
+                    <a href="/cdn-cgi/l/email-protection#fc99849d918c9099bc919d9590d29f9391" class="capsule-btn icon-btn" aria-label="Email">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="4" width="20" height="16" rx="2"/>
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
@@ -148,5 +151,16 @@
             </div>
         </footer>
     </div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+
+    <!-- Скрипт для движения свечения за курсором -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        const glow = document.getElementById('cursor-glow');
+        if (glow) {
+            document.addEventListener('mousemove', (e) => {
+                // Сдвигаем свечение на координаты курсора с учетом его радиуса (300px)
+                glow.style.transform = `translate3d(${e.clientX - 300}px, ${e.clientY - 300}px, 0)`;
+            });
+        }
+    </script>
+</body>
 </html>
