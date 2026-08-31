@@ -22,9 +22,6 @@
     padding: 0;
 }
 
-/* РЕШЕНИЕ ПРОБЛЕМЫ С ФОНОМ:
-   Переносим темный цвет на тег html, чтобы фоновая картинка внутри body не перекрывалась им.
-*/
 html {
     width: 100%;
     height: 100%;
@@ -37,7 +34,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'SF UI Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: transparent; /* Делаем body прозрачным */
+    background-color: transparent;
     color: #ffffff;
     overflow-x: hidden;
 }
@@ -52,8 +49,8 @@ body {
     background-image: url('images/fire-bg.jpg');
     background-size: cover;
     background-position: center;
-    opacity: 0.85; /* Яркий выразительный паттерн */
-    z-index: -1; /* Находится за всем контентом body, но перед фоном html */
+    opacity: 0.85;
+    z-index: -1;
 }
 
 /* Основной контейнер-обертка */
@@ -99,23 +96,26 @@ body {
     justify-content: flex-end;
 }
 
-/* Тексты в шапке (22px по ТЗ) */
+/* Тексты в шапке (22px) */
 .nav-btn {
     font-size: 22px;
     font-weight: 600;
     color: #F98FC8;
     text-decoration: none;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, color 0.2s ease;
 }
 
 .nav-btn:hover {
     opacity: 0.8;
 }
 
+/* «6 лет опыта» как ссылка */
 .experience-text {
     font-size: 22px;
     font-weight: 600;
     color: #F98FC8;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .greeting-text {
@@ -125,7 +125,7 @@ body {
     color: #20EAA7;
 }
 
-/* графический дизайнер (18px по ТЗ) */
+/* графический дизайнер (18px) */
 .greeting-tag {
     display: block;
     font-size: 18px;
@@ -137,7 +137,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 380px; /* Базовый размер для экранов 1920 */
+    width: 380px;
     max-width: 75vw;
     display: flex;
     justify-content: center;
@@ -153,7 +153,7 @@ body {
     filter: drop-shadow(0 0 20px rgba(32, 234, 167, 0.15));
 }
 
-/* --- КОНТЕЙНЕР ПЛАШЕК ПРОЕКТОВ (ДЕСКТОП 1920) --- */
+/* --- КОНТЕЙНЕР ПЛАШЕК ПРОЕКТОВ --- */
 .cards-container {
     position: absolute;
     top: 0;
@@ -164,7 +164,7 @@ body {
     z-index: 6;
 }
 
-/* Базовый стиль плашки проекта */
+/* Базовый стиль плашки проекта (Цвет зеленый, без рамок) */
 .project-card {
     position: absolute;
     width: 130px;
@@ -178,34 +178,36 @@ body {
 .card-inner {
     width: 100%;
     height: 100%;
-    border: 3.5px solid #20EAA7;
+    border: none;
     border-radius: 12px;
-    background-color: #0b1210;
+    background-color: #20EAA7; /* Зеленый цвет плашек */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 8px;
     overflow: hidden;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Внутреннее превью */
 .card-preview {
     flex-grow: 1;
-    background-color: #04271c;
+    background-color: #0b1210;
     border-radius: 6px;
     margin-bottom: 6px;
 }
 
+/* Название проекта (Цвет темно-серый, размер 18px!) */
 .card-label {
-    font-size: 10px;
+    font-size: 18px;
     font-weight: 600;
-    color: #20EAA7;
+    color: #242424; /* Темно-серый текст */
     text-transform: uppercase;
     text-align: center;
-    transition: color 0.3s ease;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 1.2;
 }
 
 /* ЭФФЕКТ НА ХОВЕРЕ */
@@ -215,12 +217,8 @@ body {
 }
 
 .project-card:hover .card-inner {
-    border-color: #F98FC8;
+    background-color: #F98FC8; /* На ховере становится розовой */
     box-shadow: 0 10px 25px rgba(249, 143, 200, 0.35);
-}
-
-.project-card:hover .card-label {
-    color: #F98FC8;
 }
 
 /* 
@@ -292,7 +290,7 @@ body {
     justify-content: center;
 }
 
-/* Направления внизу экрана (18px по ТЗ) */
+/* Направления внизу экрана (18px) */
 .tag-text {
     font-size: 18px;
     color: #20EAA7;
@@ -467,6 +465,11 @@ body {
     .project-card:hover {
         transform: scale(1.15);
     }
+    
+    /* Уменьшаем шрифт плашек для планшетов */
+    .card-label {
+        font-size: 14px;
+    }
 
     .hero-footer {
         grid-template-columns: 1fr;
@@ -521,8 +524,9 @@ body {
         border-width: 2px;
     }
     
+    /* Уменьшаем шрифт плашек для смартфонов, чтобы влезал текст */
     .card-label {
-        font-size: 9px;
+        font-size: 12px;
     }
 
     .project-card:hover {
