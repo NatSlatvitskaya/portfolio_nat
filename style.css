@@ -1,4 +1,4 @@
-/* Подключение шрифта SF UI Display */
+
 @font-face {
     font-family: 'SF UI Display';
     src: local('SF UI Display Regular'), local('SF-UI-Display-Regular'),
@@ -15,20 +15,21 @@
     font-style: normal;
 }
 
-/* Общие стили и сброс */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* РЕШЕНИЕ ПРОБЛЕМЫ С ФОНОМ:
-   Переносим темный цвет на тег html, чтобы фоновая картинка внутри body не перекрывалась им.
-*/
+html, body, a, button, .project-card, .capsule-btn {
+    cursor: url('images/cursor.png') 32 32, auto !important;
+}
+
 html {
     width: 100%;
     height: 100%;
-    background-color: #0b1210; /* Темная подложка */
+    background-color: #242424;
+    overflow-x: hidden;
 }
 
 body {
@@ -37,12 +38,33 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'SF UI Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: transparent; /* Делаем body прозрачным */
+    background-color: transparent;
     color: #ffffff;
-    overflow-x: hidden;
+    position: relative;
 }
 
-/* Статичный фон с паттерном */
+/* Свечение за курсором (находится под паттерном: z-index: -3) */
+.cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 600px; 
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(32, 234, 167, 0.36) 0%, rgba(32, 234, 167, 0.10) 40%, rgba(32, 234, 167, 0) 70%);
+    pointer-events: none;
+    z-index: -3; 
+    will-change: transform;
+    transform: translate3d(-1000px, -1000px, 0); 
+    transition: opacity 0.3s ease;
+}
+
+/* Розовое свечение при переключении темы */
+.alt-theme .cursor-glow {
+    background: radial-gradient(circle, rgba(249, 143, 200, 0.36) 0%, rgba(249, 143, 200, 0.10) 40%, rgba(249, 143, 200, 0) 70%);
+}
+
+/* Статичный фон с паттерном (с режимом наложения darken поверх свечения) */
 .bg-pattern {
     position: fixed;
     top: 0;
@@ -52,11 +74,17 @@ body {
     background-image: url('images/fire-bg.jpg');
     background-size: cover;
     background-position: center;
-    opacity: 0.85; /* Яркий выразительный паттерн */
-    z-index: -1; /* Находится за всем контентом body, но перед фоном html */
+    opacity: 0.85;
+    z-index: -2; 
+    pointer-events: none;
+    mix-blend-mode: darken;
+    transition: background-image 0.5s ease-in-out;
 }
 
-/* Основной контейнер-обертка */
+.alt-theme .bg-pattern {
+    background-image: url('images/fire-bg2.jpg');
+}
+
 .portfolio-container {
     position: relative;
     width: 100%;
@@ -68,7 +96,6 @@ body {
     z-index: 1;
 }
 
-/* --- ШАПКА (HEADER) --- */
 .hero-header {
     width: 100%;
     z-index: 10;
@@ -99,13 +126,12 @@ body {
     justify-content: flex-end;
 }
 
-/* Тексты в шапке (22px по ТЗ) */
 .nav-btn {
     font-size: 22px;
     font-weight: 600;
     color: #F98FC8;
     text-decoration: none;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, color 0.2s ease;
 }
 
 .nav-btn:hover {
@@ -116,6 +142,7 @@ body {
     font-size: 22px;
     font-weight: 600;
     color: #F98FC8;
+    text-decoration: none;
 }
 
 .greeting-text {
@@ -125,19 +152,17 @@ body {
     color: #20EAA7;
 }
 
-/* графический дизайнер (18px по ТЗ) */
 .greeting-tag {
     display: block;
     font-size: 18px;
 }
 
-/* --- ЦЕНТРАЛЬНЫЙ ПЕРСОНАЖ (КОТ) --- */
 .avatar-wrapper {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 380px; /* Базовый размер для экранов 1920 */
+    width: 380px;
     max-width: 75vw;
     display: flex;
     justify-content: center;
@@ -153,7 +178,6 @@ body {
     filter: drop-shadow(0 0 20px rgba(32, 234, 167, 0.15));
 }
 
-/* --- КОНТЕЙНЕР ПЛАШЕК ПРОЕКТОВ (ДЕСКТОП 1920) --- */
 .cards-container {
     position: absolute;
     top: 0;
@@ -164,69 +188,57 @@ body {
     z-index: 6;
 }
 
-/* Базовый стиль плашки проекта */
 .project-card {
     position: absolute;
     width: 130px;
     height: 130px;
     pointer-events: auto;
-    cursor: pointer;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 7;
 }
 
 .card-inner {
     width: 100%;
     height: 100%;
-    border: 3.5px solid #20EAA7;
+    border: none;
     border-radius: 12px;
-    background-color: #0b1210;
+    background-color: #20EAA7;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 8px;
     overflow: hidden;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .card-preview {
     flex-grow: 1;
-    background-color: #04271c;
+    background-color: #0b1210;
     border-radius: 6px;
     margin-bottom: 6px;
 }
 
 .card-label {
-    font-size: 10px;
+    font-size: 18px;
     font-weight: 600;
-    color: #20EAA7;
+    color: #242424;
     text-transform: uppercase;
     text-align: center;
-    transition: color 0.3s ease;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-/* ЭФФЕКТ НА ХОВЕРЕ */
-.project-card:hover {
-    transform: scale(1.5);
-    z-index: 20;
+    line-height: 1.2;
 }
 
 .project-card:hover .card-inner {
-    border-color: #F98FC8;
+    background-color: #F98FC8;
     box-shadow: 0 10px 25px rgba(249, 143, 200, 0.35);
+    transform: scale(1.5);
 }
 
-.project-card:hover .card-label {
-    color: #F98FC8;
+.project-card:hover {
+    z-index: 20;
 }
 
-/* 
-   КООРДИНАТЫ ПЛАШЕК ДЛЯ ЭКРАНОВ 1920 (Симметричная сетка)
-*/
-/* --- Топ-ряд (22%) --- */
 .card-smart {
     top: 22%;
     left: 18%;
@@ -236,7 +248,6 @@ body {
     right: 18%;
 }
 
-/* --- Средний ряд (45%) --- */
 .card-lidia {
     top: 45%;
     left: 8%;
@@ -254,7 +265,6 @@ body {
     right: 8%;
 }
 
-/* --- Нижний ряд (68%) --- */
 .card-agly {
     top: 68%;
     left: 18%;
@@ -264,7 +274,6 @@ body {
     right: 18%;
 }
 
-/* --- ПОДВАЛ (FOOTER) --- */
 .hero-footer {
     width: 100%;
     display: grid;
@@ -292,14 +301,12 @@ body {
     justify-content: center;
 }
 
-/* Направления внизу экрана (18px по ТЗ) */
 .tag-text {
     font-size: 18px;
     color: #20EAA7;
     font-weight: 400;
 }
 
-/* Капсула соцсетей */
 .social-capsule {
     display: flex;
     align-items: center;
@@ -343,69 +350,27 @@ body {
     stroke: currentColor;
 }
 
-
-/* ========================================================
-   АДАПТИВЫ ДЛЯ РАЗНЫХ ЭКРАНОВ
-   ======================================================== */
-
-/* --- НОУТБУКИ 15.6" / Экраны до 1600px --- */
 @media (max-width: 1600px) {
     .nav-btn, .experience-text, .greeting-text {
         font-size: 20px;
     }
-    
     .greeting-tag {
         font-size: 16px;
     }
-
     .avatar-wrapper {
         width: 290px;
     }
-    
-    /* Топ-ряд (22%) */
-    .card-smart {
-        top: 22%;
-        left: 20%;
-    }
-    .card-project-tr {
-        top: 22%;
-        right: 20%;
-    }
-    
-    /* Средний ряд (45%) */
-    .card-lidia {
-        top: 45%;
-        left: 8%;
-    }
-    .card-memoria {
-        top: 45%;
-        left: 29%;
-    }
-    .card-slet {
-        top: 45%;
-        right: 29%;
-    }
-    .card-smarty {
-        top: 45%;
-        right: 8%;
-    }
-    
-    /* Нижний ряд (68%) */
-    .card-agly {
-        top: 68%;
-        left: 20%;
-    }
-    .card-project-br {
-        top: 68%;
-        right: 20%;
-    }
-
-    .footer-left, .footer-right {
-        gap: 60px;
-    }
+    .card-smart { top: 22%; left: 20%; }
+    .card-project-tr { top: 22%; right: 20%; }
+    .card-lidia { top: 45%; left: 8%; }
+    .card-memoria { top: 45%; left: 29%; }
+    .card-slet { top: 45%; right: 29%; }
+    .card-smarty { top: 45%; right: 8%; }
+    .card-agly { top: 68%; left: 20%; }
+    .card-project-br { top: 68%; right: 20%; }
+    .footer-left, .footer-right { gap: 60px; }
 }
 
-/* --- ПЛАНШЕТЫ (до 900px) --- */
 @media (max-width: 900px) {
     .portfolio-container {
         justify-content: flex-start;
@@ -414,26 +379,21 @@ body {
         padding-bottom: 80px;
         position: relative;
     }
-
     .header-container {
         grid-template-columns: 1fr 1fr;
         row-gap: 20px;
     }
-
     .header-center {
         grid-column: span 2;
         order: -1;
         margin-bottom: 10px;
     }
-
     .header-left {
         justify-content: flex-start;
     }
-
     .header-right {
         justify-content: flex-end;
     }
-
     .avatar-wrapper {
         position: relative;
         top: 0;
@@ -442,8 +402,6 @@ body {
         margin: 15px auto;
         width: 240px;
     }
-
-    /* Сетка в 2 колонки вокруг кота */
     .cards-container {
         position: relative;
         display: grid;
@@ -456,92 +414,78 @@ body {
         pointer-events: auto;
         padding: 0 10px;
     }
-
     .project-card {
         position: static;
         width: 100%;
         height: 105px;
         transform: none;
     }
-    
-    .project-card:hover {
+    .project-card:hover .card-inner {
         transform: scale(1.15);
     }
-
+    .card-label {
+        font-size: 14px;
+    }
     .hero-footer {
         grid-template-columns: 1fr;
         row-gap: 24px;
         margin-top: 30px;
     }
-
     .footer-left, .footer-right {
         justify-content: center;
         gap: 30px;
     }
-
     .footer-center {
         order: 2;
     }
 }
 
-/* --- СМАРТФОНЫ (до 480px) --- */
 @media (max-width: 480px) {
     .portfolio-container {
         padding: 20px 10px;
         gap: 25px;
     }
-
     .header-container {
         display: flex;
         flex-direction: column;
         gap: 12px;
     }
-    
     .header-center {
         order: unset;
     }
-
     .avatar-wrapper {
         width: 180px;
         margin: 5px auto;
     }
-
     .cards-container {
         grid-template-columns: 1fr 1fr;
         gap: 10px;
         padding: 0;
     }
-
     .project-card {
         height: 85px;
     }
-    
     .card-inner {
         padding: 5px;
         border-width: 2px;
     }
-    
     .card-label {
-        font-size: 9px;
+        font-size: 12px;
     }
-
-    .project-card:hover {
+    .project-card:hover .card-inner {
         transform: scale(1.08);
     }
-
     .hero-footer {
         display: flex;
         flex-direction: column;
         gap: 14px;
         margin-top: 15px;
     }
-
     .footer-left, .footer-right {
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px;
     }
-
     .social-capsule {
         padding: 8px 16px;
         gap: 10px;

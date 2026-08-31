@@ -154,7 +154,6 @@
 
     <!-- Интерактивные скрипты -->
     <script>
-        // 1. Движение свечения за курсором
         const glow = document.getElementById('cursor-glow');
         if (glow) {
             document.addEventListener('mousemove', (e) => {
@@ -162,7 +161,6 @@
             });
         }
 
-        // 2. Смена темы при клике на свободную область экрана
         document.addEventListener('click', (e) => {
             if (
                 e.target.closest('a') || 
