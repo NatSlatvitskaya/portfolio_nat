@@ -7,39 +7,145 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Картинка на заднем плане (hero-background) -->
-<div class="video-bg-container">
-    <img src="images/fire-bg.jpg" alt="Background" class="video-bg">
-</div>
+    <!-- Статичный фон с паттерном -->
+    <div class="bg-pattern"></div>
 
-    <!-- Основной контент Hero секции -->
-    <header class="hero-header">
-        <div class="grid-container">
-            <!-- Левая колонка: Кнопка «Все проекты» -->
-            <div class="col-left">
-                <a href="projects.html" class="nav-btn">Все проекты</a>
+    <div class="portfolio-container">
+        <!-- Шапка (Header) -->
+        <header class="hero-header">
+            <div class="header-container">
+                <div class="header-left">
+                    <a href="projects.html" class="nav-btn">Все проекты</a>
+                </div>
+                <div class="header-center">
+                    <h1 class="greeting-text">
+                        Привет, Я — Наташа<br>
+                        <span class="greeting-tag">{графический и бренд-дизайнер}</span>
+                    </h1>
+                </div>
+                <div class="header-right">
+                    <span class="experience-text">6 лет опыта</span>
+                </div>
             </div>
+        </header>
 
-            <!-- Центральная колонка: Текст-приветствие -->
-            <div class="col-center">
-                <h1 class="greeting-text">
-                    Привет, Я — Наташа<br>
-                    <span class="greeting-tag">{графический и бренд-дизайнер}</span>
-                </h1>
-            </div>
-
-            <!-- Правая колонка: Статичный текст «6 лет опыта» -->
-            <div class="col-right">
-                <span class="experience-text">6 лет опыта</span>
-            </div>
-        </div>
-    </header>
-
-    <!-- Центральный аватар -->
-    <main class="hero-main">
+        <!-- Центральный персонаж (Кот) -->
         <div class="avatar-wrapper">
-            <img src="images/avatar.png" alt="Аватар Наташи" class="avatar-img">
+            <img src="images/avatar.png" alt="Персонаж Кот" class="avatar-img">
         </div>
-    </main>
+
+        <!-- Контейнер с 8 плашками проектов -->
+        <div class="cards-container">
+            <!-- Плашка 1: SMART -->
+            <div class="project-card card-smart">
+                <div class="card-inner">
+                    <div class="card-preview"></div>
+                    <div class="card-label">SMART</div>
+                </div>
+            </div>
+
+            <!-- Плашка 2: MEMORIA -->
+            <div class="project-card card-memoria">
+                <div class="card-inner">
+                    <div class="card-preview"></div>
+                    <div class="card-label">MEMORIA</div>
+                </div>
+            </div>
+
+            <!-- Плашка 3: LIDIA&POGGIO -->
+            <div class="project-card card-lidia">
+                <div class="card-inner">
+                    <div class="card-preview"></div>
+                    <div class="card-label">LIDIA&POGGIO</div>
+                </div>
+            </div>
+
+            <!-- Плашка 4: AGLY -->
+            <div class="project-card card-agly">
+                <div class="card-inner">
+                    <div class="card-preview"></div>
+                    <div class="card-label">AGLY</div>
+                </div>
+            </div>
+
+            <!-- Плашка 5: SLET -->
+            <div class="project-card card-slet">
+                <div class="card-inner">
+                    <div class="card-preview"></div>
+                    <div class="card-label">SLET</div>
+                </div>
+            </div>
+
+            <!-- Плашка 6: SMARTY -->
+            <div class="project-card card-smarty">
+                <div class="card-inner">
+                    <div class="card-preview"></div>
+                    <div class="card-label">SMARTY</div>
+                </div>
+            </div>
+
+            <!-- Плашка 7: ПРОЕКТ (Справа снизу) -->
+            <div class="project-card card-project-br">
+                <div class="card-inner">
+                    <div class="card-preview"></div>
+                    <div class="card-label">ПРОЕКТ</div>
+                </div>
+            </div>
+
+            <!-- Плашка 8: ПРОЕКТ (Справа сверху) -->
+            <div class="project-card card-project-tr">
+                <div class="card-inner">
+                    <div class="card-preview"></div>
+                    <div class="card-label">ПРОЕКТ</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Подвал с тегами и капсулой -->
+        <footer class="hero-footer">
+            <div class="footer-left">
+                <span class="tag-text">{брендинг}</span>
+                <span class="tag-text">{веб-дизайн}</span>
+            </div>
+            
+            <div class="footer-center">
+                <div class="social-capsule">
+                    <a href="#" class="capsule-btn cv-btn">cv</a>
+                    <span class="capsule-divider"></span>
+                    <a href="#" class="capsule-btn icon-btn" aria-label="Website">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="capsule-btn icon-btn" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                        </svg>
+                    </a>
+                    <a href="https://t.me/yourusername" class="capsule-btn icon-btn" aria-label="Telegram" target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m22 2-7 20-4-9-9-4Z"/>
+                            <path d="M22 2 11 13"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:example@mail.com" class="capsule-btn icon-btn" aria-label="Email">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-right">
+                <span class="tag-text">{коммуникация}</span>
+                <span class="tag-text">{иллюстрация}</span>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>

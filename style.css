@@ -24,88 +24,79 @@
 
 body, html {
     width: 100%;
-    height: 100%;
-    overflow: hidden; /* Так как это hero-экран на 100vh */
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
     font-family: 'SF UI Display', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #242424; /* Запасной черный цвет из дизайн-системы */
+    background-color: #0b1210; /* Темный фон */
     color: #ffffff;
+    overflow-x: hidden;
 }
 
-/* 1. Видео на весь экран (100vh) */
-.video-bg-container {
-    position: absolute;
+/* Статичный фон с паттерном */
+.bg-pattern {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
-    z-index: -1;
-    overflow: hidden;
+    height: 100%;
+    background-image: url('images/fire-bg.jpg'); /* Статичный фон с паттерном */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.45; /* Слегка затемним, чтобы элементы чились контрастно */
+    z-index: -2;
 }
 
-.video-bg {
+/* Основной контейнер-обертка для управления структурой */
+.portfolio-container {
+    position: relative;
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px 20px;
+    z-index: 1;
 }
 
-/* 2. 12-колончатая сетка (Stretch; Margin 20px; Gutter 16px) */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: 16px;
-    margin-left: 20px;
-    margin-right: 20px;
-    width: calc(100% - 40px); /* 100% минус боковые margin по 20px */
-    height: 100%;
-    align-items: flex-start;
-}
-
-/* Распределение колонок для хедера */
+/* --- ШАПКА (HEADER) --- */
 .hero-header {
-    position: absolute;
-    top: 40px; /* Отступ сверху */
-    left: 0;
     width: 100%;
     z-index: 10;
 }
 
-/* Левая часть: кнопка занимает 3 колонки */
-.col-left {
-    grid-column: span 3;
-    display: flex;
-    justify-content: flex-start;
+.header-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
 }
 
-/* Центральная часть: приветствие занимает 6 колонок */
-.col-center {
-    grid-column: span 6;
+.header-left {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header-center {
     display: flex;
     justify-content: center;
-    align-items: center;
     text-align: center;
 }
 
-/* Правая часть: опыт работы занимает 3 колонки */
-.col-right {
-    grid-column: span 3;
+.header-right {
     display: flex;
     justify-content: flex-end;
-    align-items: center;
 }
 
-/* 3. Оформление текста */
-
-/* Акцентный цвет текста: #00E6A3 */
+/* Тексты в шапке */
 .nav-btn {
-    font-size: 36px;
-    font-weight: 600; /* semibold */
-    color: #00E6A3;
+    font-size: 32px;
+    font-weight: 600;
+    color: #F98FC8; /* Цвет текста «Все проекты» и «6 лет опыта» в новом дизайне розовый */
     text-decoration: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease;
 }
 
 .nav-btn:hover {
@@ -113,59 +104,450 @@ body, html {
 }
 
 .experience-text {
-    font-size: 36px;
-    font-weight: 600; /* semibold */
-    color: #00E6A3;
-    user-select: none;
+    font-size: 32px;
+    font-weight: 600;
+    color: #F98FC8; /* Розовый акцент */
 }
 
 .greeting-text {
     font-size: 28px;
-    font-weight: 400; /* regular */
+    font-weight: 400;
     line-height: 1.35;
-    color: #00E6A3;
+    color: #20EAA7; /* Фирменный зеленый */
 }
 
 .greeting-tag {
-    /* Дополнительное выделение для фигурных скобок и текста внутри */
     display: block;
 }
 
-/* 4. Центральный аватар (.avatar-wrapper) */
-.hero-main {
+/* --- ЦЕНТРАЛЬНЫЙ ПЕРСОНАЖ (КОТ) --- */
+.avatar-wrapper {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 420px;
+    max-width: 85vw;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 5;
-    pointer-events: none; /* Пропускаем клики, если под аватаром есть ссылки */
-}
-
-.avatar-wrapper {
-    width: 658px;
-    max-width: 90vw; /* Адаптивность для узких экранов */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: auto; /* Возвращаем кликабельность самому аватару */
+    pointer-events: none; /* Пропускаем клики насквозь */
 }
 
 .avatar-img {
     width: 100%;
     height: auto;
     object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(32, 234, 167, 0.2));
 }
 
-/* Дополнительные параметры дизайн-системы для общего понимания (скругления и тени) */
-.case-card {
-    border-radius: 24px; /* Внешнее скругление */
-    box-shadow: -30px 20px 30px rgba(0, 0, 0, 0.25); /* x -30, y 20, blur 30, #000000 25% */
+/* --- КОНТЕЙНЕР ПЛАШЕК ПРОЕКТОВ (ДЕСКТОП 1920 / 1440) --- */
+.cards-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Пропускаем клики на подложку */
+    z-index: 6;
 }
 
-.case-inner-badge {
-    border-radius: 12px; /* Плашки внутри */
+/* Базовый стиль плашки проекта */
+.project-card {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    pointer-events: auto; /* Возвращаем кликабельность плашкам */
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 7;
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    border: 3.5px solid #20EAA7; /* Дефолтная граница HEX #20EAA7 */
+    border-radius: 12px;
+    background-color: #0b1210; /* Темная заливка внутри */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-preview {
+    flex-grow: 1;
+    background-color: #04271c; /* Более темный зеленый блок внутри */
+    border-radius: 6px;
+    margin-bottom: 6px;
+}
+
+.card-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #20EAA7;
+    text-transform: uppercase;
+    text-align: center;
+    transition: color 0.3s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ЭФФЕКТ НА ХОВЕРЕ:
+   - Увеличение плавно в 1.5 раза
+   - Изменение цвета границы и текста на HEX #F98FC8
+*/
+.project-card:hover {
+    transform: scale(1.5);
+    z-index: 20; /* При наведении плашка перекрывает другие */
+}
+
+.project-card:hover .card-inner {
+    border-color: #F98FC8; /* Цвет меняется на розовый */
+    box-shadow: 0 10px 25px rgba(249, 143, 200, 0.35);
+}
+
+.project-card:hover .card-label {
+    color: #F98FC8; /* Цвет текста меняется на розовый */
+}
+
+/* КООРДИНАТЫ ПЛАШЕК ДЛЯ ЭКРАНОВ 1920 и 1440 (Абсолютное позиционирование) */
+.card-smart {
+    top: 17%;
+    left: 18%;
+}
+
+.card-memoria {
+    top: 40%;
+    left: 26%;
+}
+
+.card-lidia {
+    top: 44%;
+    left: 2%;
+}
+
+.card-agly {
+    top: 66%;
+    left: 18%;
+}
+
+.card-project-tr {
+    top: 17%;
+    left: 90%;
+}
+
+.card-slet {
+    top: 24%;
+    left: 68%;
+}
+
+.card-smarty {
+    top: 40%;
+    left: 83%;
+}
+
+.card-project-br {
+    top: 66%;
+    left: 68%;
+}
+
+/* --- ПОДВАЛ (FOOTER) --- */
+.hero-footer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    z-index: 10;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.footer-left {
+    display: flex;
+    justify-content: flex-start;
+    gap: 100px;
+}
+
+.footer-right {
+    display: flex;
+    justify-content: flex-end;
+    gap: 100px;
+}
+
+.footer-center {
+    display: flex;
+    justify-content: center;
+}
+
+.tag-text {
+    font-size: 24px;
+    color: #20EAA7;
+    font-weight: 400;
+}
+
+/* Капсула соцсетей */
+.social-capsule {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    padding: 10px 24px;
+    gap: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.capsule-btn {
+    color: #ffffff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.capsule-btn:hover {
+    color: #20EAA7;
+    transform: scale(1.1);
+}
+
+.cv-btn {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.capsule-divider {
+    width: 1.5px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.icon-btn svg {
+    stroke: currentColor;
+}
+
+
+/* ========================================================
+   АДАПТИВЫ ДЛЯ РАЗНЫХ ЭКРАНОВ
+   ======================================================== */
+
+/* --- АДАПТИВ 1440px (Десктоп поменьше) --- */
+@media (max-width: 1500px) {
+    .portfolio-container {
+        padding: 30px 20px;
+    }
+    
+    .nav-btn, .experience-text {
+        font-size: 28px;
+    }
+    
+    .greeting-text {
+        font-size: 24px;
+    }
+    
+    .avatar-wrapper {
+        width: 350px;
+    }
+    
+    .tag-text {
+        font-size: 20px;
+    }
+    
+    .footer-left, .footer-right {
+        gap: 60px;
+    }
+    
+    /* Слегка сдвигаем плашки, чтобы влезли в 1440 */
+    .card-smart { top: 15%; left: 16%; }
+    .card-memoria { top: 38%; left: 24%; }
+    .card-lidia { top: 44%; left: 3%; }
+    .card-agly { top: 68%; left: 16%; }
+    
+    .card-project-tr { top: 15%; left: 88%; }
+    .card-slet { top: 22%; left: 70%; }
+    .card-smarty { top: 38%; left: 81%; }
+    .card-project-br { top: 68%; left: 70%; }
+}
+
+/* --- АДАПТИВ 768px (Планшет) --- */
+@media (max-width: 900px) {
+    .portfolio-container {
+        justify-content: flex-start;
+        gap: 40px;
+        min-height: auto;
+        padding-bottom: 80px;
+        position: relative;
+    }
+
+    .header-container {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 20px;
+    }
+
+    .header-center {
+        grid-column: span 2;
+        order: -1; /* Текст приветствия сверху */
+        margin-bottom: 10px;
+    }
+
+    .header-left {
+        justify-content: flex-start;
+    }
+
+    .header-right {
+        justify-content: flex-end;
+    }
+    
+    .nav-btn, .experience-text {
+        font-size: 24px;
+    }
+    
+    .greeting-text {
+        font-size: 22px;
+    }
+
+    /* Персонаж (Кот) по центру */
+    .avatar-wrapper {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        margin: 20px auto;
+        width: 280px;
+    }
+
+    /* Перестраиваем плашки в 2 колонки вокруг кота (слева 4 и справа 4) */
+    .cards-container {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        height: auto;
+        pointer-events: auto;
+        padding: 0 10px;
+    }
+
+    .project-card {
+        position: static; /* Отключаем абсолютное позиционирование */
+        width: 100%;
+        height: 110px;
+        transform: none;
+    }
+    
+    .project-card:hover {
+        transform: scale(1.15); /* Чуть меньше увеличение для мобильных/планшетов */
+    }
+
+    /* Подвал */
+    .hero-footer {
+        grid-template-columns: 1fr;
+        row-gap: 24px;
+        margin-top: 40px;
+    }
+
+    .footer-left, .footer-right {
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .footer-center {
+        order: 2; /* Капсулу вниз */
+    }
+    
+    .tag-text {
+        font-size: 18px;
+    }
+}
+
+/* --- АДАПТИВ 360px (Смартфон) --- */
+@media (max-width: 480px) {
+    .portfolio-container {
+        padding: 20px 10px;
+        gap: 30px;
+    }
+
+    .header-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .header-center {
+        order: unset;
+    }
+
+    .nav-btn, .experience-text {
+        font-size: 20px;
+    }
+
+    .greeting-text {
+        font-size: 18px;
+    }
+
+    .avatar-wrapper {
+        width: 200px;
+        margin: 10px auto;
+    }
+
+    /* На телефоне 360px выстраиваем плашки в плотную сетку 2x4 */
+    .cards-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        padding: 0;
+    }
+
+    .project-card {
+        height: 90px;
+    }
+    
+    .card-inner {
+        padding: 6px;
+        border-width: 2.5px;
+    }
+    
+    .card-label {
+        font-size: 9px;
+    }
+
+    .project-card:hover {
+        transform: scale(1.08); /* Минимальный ховер, чтобы не выходить за экран смартфона */
+    }
+
+    /* Подвал на телефоне */
+    .hero-footer {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 20px;
+    }
+
+    .footer-left, .footer-right {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .tag-text {
+        font-size: 15px;
+    }
+
+    .social-capsule {
+        padding: 8px 18px;
+        gap: 12px;
+    }
+    
+    .cv-btn {
+        font-size: 16px;
+    }
 }
