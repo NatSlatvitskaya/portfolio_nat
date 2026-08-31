@@ -136,7 +136,7 @@
                             <path d="M22 2 11 13"/>
                         </svg>
                     </a>
-                    <a href="/cdn-cgi/l/email-protection#fc99849d918c9099bc919d9590d29f9391" class="capsule-btn icon-btn" aria-label="Email">
+                    <a href="mailto:example@mail.com" class="capsule-btn icon-btn" aria-label="Email">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="4" width="20" height="16" rx="2"/>
                             <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
@@ -152,15 +152,33 @@
         </footer>
     </div>
 
-    <!-- Скрипт для движения свечения за курсором -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <!-- Интерактивные скрипты -->
+    <script>
+        // 1. Движение свечения за курсором
         const glow = document.getElementById('cursor-glow');
         if (glow) {
             document.addEventListener('mousemove', (e) => {
-                // Сдвигаем свечение на координаты курсора с учетом его радиуса (300px)
                 glow.style.transform = `translate3d(${e.clientX - 300}px, ${e.clientY - 300}px, 0)`;
             });
         }
+
+        // 2. Смена фона при клике на свободную область экрана
+        document.addEventListener('click', (e) => {
+            // Если кликнули по ссылке, кнопке, плашке проекта или капсуле соцсетей - ничего не делаем
+            if (
+                e.target.closest('a') || 
+                e.target.closest('.project-card') || 
+                e.target.closest('.social-capsule') ||
+                e.target.closest('button')
+            ) {
+                return;
+            }
+            
+            const bg = document.querySelector('.bg-pattern');
+            if (bg) {
+                bg.classList.toggle('alt-bg');
+            }
+        });
     </script>
 </body>
 </html>
