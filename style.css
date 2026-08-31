@@ -43,7 +43,7 @@ body, html {
     background-image: url('images/fire-bg.jpg');
     background-size: cover;
     background-position: center;
-    opacity: 0.85; /* Повысили непрозрачность до 85%, чтобы паттерн зебры был четко виден как в Figma */
+    opacity: 0.85; /* Яркий выразительный паттерн */
     z-index: -2;
 }
 
@@ -144,7 +144,7 @@ body, html {
     filter: drop-shadow(0 0 20px rgba(32, 234, 167, 0.15));
 }
 
-/* --- КОНТЕЙНЕР ПЛАШЕК ПРОЕКТОВ (ДЕСКТОП) --- */
+/* --- КОНТЕЙНЕР ПЛАШЕК ПРОЕКТОВ (ДЕСКТОП 1920) --- */
 .cards-container {
     position: absolute;
     top: 0;
@@ -215,8 +215,7 @@ body, html {
 }
 
 /* 
-   МАТЕМАТИЧЕСКИ ТОЧНЫЕ КООРДИНАТЫ ИЗ ФИГМЫ (Symmetric Layout)
-   Левые плашки позиционируются через left, правые через right
+   КООРДИНАТЫ ПЛАШЕК ДЛЯ ЭКРАНОВ 1920 (Симметричная сетка)
 */
 /* --- Топ-ряд (22%) --- */
 .card-smart {
@@ -255,7 +254,6 @@ body, html {
     top: 68%;
     right: 18%; /* Симметрично AGLY */
 }
-
 
 /* --- ПОДВАЛ (FOOTER) --- */
 .hero-footer {
@@ -343,22 +341,60 @@ body, html {
 
 /* --- НОУТБУКИ 15.6" / Экраны до 1600px --- */
 @media (max-width: 1600px) {
+    .nav-btn, .experience-text, .greeting-text {
+        font-size: 20px; /* Слегка уменьшаем тексты для средних экранов */
+    }
+    
+    .greeting-tag {
+        font-size: 16px;
+    }
+
     /* Делаем кота аккуратнее для ноутбуков (290px по ТЗ), чтобы не перекрывал плашки */
     .avatar-wrapper {
         width: 290px;
     }
     
-    /* Слегка сдвигаем плашки к краям, чтобы они идеально обрамляли кота 290px */
-    .card-smart { top: 22%; left: 20%; }
-    .card-project-tr { top: 22%; right: 20%; }
+    /* 
+       ИСПРАВЛЕННЫЕ, СИММЕТРИЧНЫЕ КООРДИНАТЫ ДЛЯ ЭКРАНОВ НОУТБУКОВ 
+       (Высота рядов совпадает пиксель в пиксель!)
+    */
+    /* Топ-ряд (22%) */
+    .card-smart {
+        top: 22%;
+        left: 20%;
+    }
+    .card-project-tr {
+        top: 22%;
+        right: 20%;
+    }
     
-    .card-lidia { top: 45%; left: 8%; }
-    .card-memoria { top: 45%; left: 29%; }
-    .card-slet { top: 45%; right: 29%; }
-    .card-smarty { top: 45%; right: 8%; }
+    /* Средний ряд (45%) */
+    .card-lidia {
+        top: 45%;
+        left: 8%;
+    }
+    .card-memoria {
+        top: 45%;
+        left: 29%;
+    }
+    .card-slet {
+        top: 45%;
+        right: 29%;
+    }
+    .card-smarty {
+        top: 45%;
+        right: 8%;
+    }
     
-    .card-agly { top: 68%; left: 20%; }
-    .card-project-br { top: 68%; right: 20%; }
+    /* Нижний ряд (68%) */
+    .card-agly {
+        top: 68%;
+        left: 20%;
+    }
+    .card-project-br {
+        top: 68%;
+        right: 20%;
+    }
 
     .footer-left, .footer-right {
         gap: 60px;
