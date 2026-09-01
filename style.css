@@ -366,10 +366,10 @@ body {
     .card-project-br { top: 68%; right: 20%; }
     .footer-left, .footer-right { gap: 60px; }
     
-    /* Ноутбук (1440px): капсула 456x128px, иконки 64px */
+    /* Ноутбук (1440px): плашка 456x96px, иконки 64px */
     .social-capsule {
         width: 456px;
-        height: 128px;
+        height: 96px;
         padding: 0 24px;
     }
     .capsule-icon {
@@ -377,7 +377,7 @@ body {
         height: 64px;
     }
     .capsule-divider {
-        height: 44px;
+        height: 36px;
     }
 }
 
@@ -425,7 +425,7 @@ body {
     .footer-left, .footer-right { justify-content: center; gap: 30px; }
     .footer-center { order: 2; }
     
-    /* Планшет (768px): капсула 344x96px, иконки 48px */
+    /* Планшет (768px): плашка 344x96px, иконки 48px */
     .social-capsule {
         width: 344px;
         height: 96px;
@@ -453,11 +453,11 @@ body {
     .hero-footer { display: flex; flex-direction: column; gap: 14px; margin-top: 15px; }
     .footer-left, .footer-right { flex-wrap: wrap; justify-content: center; gap: 10px; }
     
-    /* Мобильный: капсула 320x96px, иконки 48px */
+    /* Мобильный: плашка 320x80px, иконки 48px */
     .social-capsule { 
         width: 320px; 
         max-width: 95vw; 
-        height: 96px; 
+        height: 80px; 
         padding: 0 16px; 
         border-radius: 80px; 
     }
@@ -466,7 +466,7 @@ body {
         height: 48px;
     }
     .capsule-divider {
-        height: 32px;
+        height: 28px;
     }
 }
 
