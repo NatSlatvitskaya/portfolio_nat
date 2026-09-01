@@ -270,32 +270,39 @@ body {
 .card-agly { top: 68%; left: 18%; }
 .card-project-br { top: 68%; right: 18%; }
 
-/* --- ПОДВАЛ (FOOTER) --- */
+/* --- ПОДВАЛ (FOOTER)С РАВНОМЕРНЫМ РАСПРЕДЕЛЕНИЕМ --- */
 .hero-footer {
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     z-index: 10;
     max-width: 1920px;
     margin: 0 auto;
+    padding: 0 10px;
 }
 
 .footer-left {
     display: flex;
-    justify-content: flex-start;
-    gap: 100px;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    max-width: 35%;
 }
 
 .footer-right {
     display: flex;
-    justify-content: flex-end;
-    gap: 100px;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    max-width: 35%;
 }
 
 .footer-center {
     display: flex;
     justify-content: center;
+    flex-shrink: 0;
+    margin: 0 20px;
 }
 
 .tag-text {
@@ -355,7 +362,6 @@ body {
     .nav-btn, .experience-text, .greeting-text { font-size: 20px; }
     .greeting-tag { font-size: 16px; }
     
-    /* Адаптированный размер и приподнятый центр кота на ноутбуках */
     .avatar-wrapper { 
         width: clamp(220px, 32vh, 280px); 
         max-height: 44vh; 
@@ -372,9 +378,8 @@ body {
     .card-smarty { top: 45%; right: 8%; }
     .card-agly { top: 68%; left: 20%; }
     .card-project-br { top: 68%; right: 20%; }
-    .footer-left, .footer-right { gap: 60px; }
+    .footer-left, .footer-right { max-width: 34%; }
     
-    /* Компактная плашка 320x80px */
     .social-capsule {
         width: 320px;
         height: 80px;
@@ -429,11 +434,10 @@ body {
     }
     .project-card:hover .card-inner { transform: scale(1.15); }
     .card-label { font-size: 16px; }
-    .hero-footer { grid-template-columns: 1fr; row-gap: 24px; margin-top: 30px; }
-    .footer-left, .footer-right { justify-content: center; gap: 30px; }
+    .hero-footer { flex-direction: column; row-gap: 24px; margin-top: 30px; }
+    .footer-left, .footer-right { max-width: 100%; justify-content: center; gap: 30px; }
     .footer-center { order: 2; }
     
-    /* Планшет (768px): плашка 344x96px, иконки 48px */
     .social-capsule {
         width: 344px;
         height: 96px;
@@ -461,7 +465,6 @@ body {
     .hero-footer { display: flex; flex-direction: column; gap: 14px; margin-top: 15px; }
     .footer-left, .footer-right { flex-wrap: wrap; justify-content: center; gap: 10px; }
     
-    /* Мобильный: плашка 320x80px, иконки 48px */
     .social-capsule { 
         width: 320px; 
         max-width: 95vw; 
