@@ -218,7 +218,7 @@ body {
     width: 100%;
     height: 100%;
     border: none;
-    border-radius: 6px; /* Скругление 6px для всех плашек проектов */
+    border-radius: 6px;
     background-color: #20EAA7;
     display: flex;
     flex-direction: column;
@@ -366,18 +366,18 @@ body {
     .card-project-br { top: 68%; right: 20%; }
     .footer-left, .footer-right { gap: 60px; }
     
-    /* Ноутбук (1440px): плашка 456x96px, иконки 64px */
+    /* Ноутбук (1440px): плашка компактная как на мобильном (320x80px, иконки 48px), чтобы не перекрывать кота */
     .social-capsule {
-        width: 456px;
-        height: 96px;
-        padding: 0 24px;
+        width: 320px;
+        height: 80px;
+        padding: 0 16px;
     }
     .capsule-icon {
-        width: 64px;
-        height: 64px;
+        width: 48px;
+        height: 48px;
     }
     .capsule-divider {
-        height: 36px;
+        height: 28px;
     }
 }
 
