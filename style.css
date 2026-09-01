@@ -85,7 +85,7 @@ body {
     background-image: url('images/fire-bg.jpg');
     z-index: -2;
     mix-blend-mode: darken;
-    opacity: 0.85; /* Виден по умолчанию */
+    opacity: 0.85;
 }
 
 /* Второй паттерн: Пламя (по умолчанию скрыт, mix-blend-mode: screen) */
@@ -93,7 +93,7 @@ body {
     background-image: url('images/fire-bg2.jpg');
     z-index: -2;
     mix-blend-mode: screen;
-    opacity: 0; /* Скрыт по умолчанию */
+    opacity: 0;
 }
 
 /* Смена видимости фонов при клике */
@@ -355,8 +355,8 @@ body {
     .nav-btn, .experience-text, .greeting-text { font-size: 20px; }
     .greeting-tag { font-size: 16px; }
     .avatar-wrapper { width: 290px; }
-    .project-card { width: 86px; height: 86px; } /* Уменьшаем размер карточек в 1.5 раза для ноутбуков */
-    .card-label { font-size: 16px; } /* Уменьшаем шрифт плашек для ноутбуков до 16px */
+    .project-card { width: 108px; height: 108px; } /* Оптимальный увеличенный размер карточек для ноутбуков */
+    .card-label { font-size: 16px; }
     .card-smart { top: 22%; left: 20%; }
     .card-project-tr { top: 22%; right: 20%; }
     .card-lidia { top: 45%; left: 8%; }
@@ -403,11 +403,11 @@ body {
     .project-card {
         position: static;
         width: 100%;
-        height: 70px; /* Уменьшили высоту карточек в 1.5 раза для планшетов */
+        height: clamp(80px, 10vh, 120px); /* Высота карточек адаптируется под высоту экрана устройства */
         transform: none;
     }
     .project-card:hover .card-inner { transform: scale(1.15); }
-    .card-label { font-size: 16px; } /* Уменьшаем шрифт плашек для планшетов до 16px */
+    .card-label { font-size: 16px; }
     .hero-footer { grid-template-columns: 1fr; row-gap: 24px; margin-top: 30px; }
     .footer-left, .footer-right { justify-content: center; gap: 30px; }
     .footer-center { order: 2; }
@@ -417,11 +417,11 @@ body {
     .portfolio-container { padding: 20px 10px; gap: 25px; }
     .header-container { display: flex; flex-direction: column; gap: 12px; }
     .header-center { order: unset; }
-    .avatar-wrapper { display: none !important; } /* СКРЫВАЕМ КОТА НА МОБИЛЬНЫХ */
+    .avatar-wrapper { display: none !important; }
     .cards-container { grid-template-columns: 1fr 1fr; gap: 10px; padding: 0; }
-    .project-card { height: 65px; }
+    .project-card { height: clamp(75px, 9.5vh, 105px); } /* Адаптивная высота под экран телефона */
     .card-inner { padding: 5px; border-width: 2px; }
-    .card-label { font-size: 16px; } /* Уменьшаем шрифт плашек до 16px на телефонах */
+    .card-label { font-size: 16px; }
     .project-card:hover .card-inner { transform: scale(1.08); }
     .hero-footer { display: flex; flex-direction: column; gap: 14px; margin-top: 15px; }
     .footer-left, .footer-right { flex-wrap: wrap; justify-content: center; gap: 10px; }
