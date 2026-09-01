@@ -26,9 +26,9 @@
     padding: 0;
 }
 
-/* Кастомный курсор (точка клика по центру: 54 24) */
+/* Кастомный курсор, уменьшенный на 30% (точка клика: 38 17) */
 html, body, a, button, .project-card, .capsule-btn {
-    cursor: url('images/cursor.png') 54 24, auto !important;
+    cursor: url('images/cursor.png') 38 17, auto !important;
 }
 
 html {
