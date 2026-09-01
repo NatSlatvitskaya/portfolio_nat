@@ -173,14 +173,14 @@ body {
     font-size: 18px;
 }
 
-/* --- ЦЕНТРАЛЬНЫЙ ПЕРСОНАЖ (КОТ) --- */
+/* --- ЦЕНТРАЛЬНЫЙ ПЕРСОНАЖ (КОТ) С ДИНАМИЧЕСКИМ МАСШТАБОМ ПО ВЫСОТЕ --- */
 .avatar-wrapper {
     position: absolute;
-    top: 50%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 380px;
-    max-width: 75vw;
+    width: clamp(260px, 36vh, 380px);
+    max-height: 48vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -190,6 +190,7 @@ body {
 
 .avatar-img {
     width: 100%;
+    max-height: 100%;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 20px rgba(32, 234, 167, 0.15));
@@ -353,7 +354,14 @@ body {
 @media (max-width: 1600px) {
     .nav-btn, .experience-text, .greeting-text { font-size: 20px; }
     .greeting-tag { font-size: 16px; }
-    .avatar-wrapper { width: 290px; }
+    
+    /* Адаптированный размер и приподнятый центр кота на ноутбуках */
+    .avatar-wrapper { 
+        width: clamp(220px, 32vh, 280px); 
+        max-height: 44vh; 
+        top: 46%; 
+    }
+    
     .project-card { width: 108px; height: 108px; }
     .card-label { font-size: 16px; }
     .card-smart { top: 22%; left: 20%; }
@@ -366,7 +374,7 @@ body {
     .card-project-br { top: 68%; right: 20%; }
     .footer-left, .footer-right { gap: 60px; }
     
-    /* Ноутбук (1440px): плашка компактная как на мобильном (320x80px, иконки 48px), чтобы не перекрывать кота */
+    /* Компактная плашка 320x80px */
     .social-capsule {
         width: 320px;
         height: 80px;
