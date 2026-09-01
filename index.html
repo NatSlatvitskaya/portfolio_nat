@@ -40,56 +40,56 @@
 
         <!-- Контейнер с 8 плашками проектов -->
         <div class="cards-container">
-            <div class="project-card card-smart">
+            <div class="project-card card-smart" data-project="SMART">
                 <div class="card-inner">
                     <div class="card-preview"></div>
                     <div class="card-label">SMART</div>
                 </div>
             </div>
 
-            <div class="project-card card-memoria">
+            <div class="project-card card-memoria" data-project="MEMORIA">
                 <div class="card-inner">
                     <div class="card-preview"></div>
                     <div class="card-label">MEMORIA</div>
                 </div>
             </div>
 
-            <div class="project-card card-lidia">
+            <div class="project-card card-lidia" data-project="LIDIA&POGGIO">
                 <div class="card-inner">
                     <div class="card-preview"></div>
                     <div class="card-label">LIDIA&POGGIO</div>
                 </div>
             </div>
 
-            <div class="project-card card-agly">
+            <div class="project-card card-agly" data-project="AGLY">
                 <div class="card-inner">
                     <div class="card-preview"></div>
                     <div class="card-label">AGLY</div>
                 </div>
             </div>
 
-            <div class="project-card card-slet">
+            <div class="project-card card-slet" data-project="SLET">
                 <div class="card-inner">
                     <div class="card-preview"></div>
                     <div class="card-label">SLET</div>
                 </div>
             </div>
 
-            <div class="project-card card-smarty">
+            <div class="project-card card-smarty" data-project="SMARTY">
                 <div class="card-inner">
                     <div class="card-preview"></div>
                     <div class="card-label">SMARTY</div>
                 </div>
             </div>
 
-            <div class="project-card card-project-br">
+            <div class="project-card card-project-br" data-project="ПРОЕКТ 7">
                 <div class="card-inner">
                     <div class="card-preview"></div>
                     <div class="card-label">ПРОЕКТ</div>
                 </div>
             </div>
 
-            <div class="project-card card-project-tr">
+            <div class="project-card card-project-tr" data-project="ПРОЕКТ 8">
                 <div class="card-inner">
                     <div class="card-preview"></div>
                     <div class="card-label">ПРОЕКТ</div>
@@ -97,7 +97,7 @@
             </div>
         </div>
 
-        <!-- Подвал с тегами и капсулой (616x148px из Figma) -->
+        <!-- Подвал с тегами и капсулой -->
         <footer class="hero-footer">
             <div class="footer-left">
                 <span class="tag-text">{брендинг}</span>
@@ -115,10 +115,7 @@
                     <a href="https://www.behance.net/nnzuzu5f5d" class="capsule-btn" target="_blank" aria-label="Behance">
                         <img src="images/behance.svg" alt="Behance" class="capsule-icon">
                     </a>
-                    
-                    <!-- Черная вертикальная черта -->
                     <span class="capsule-divider"></span>
-                    
                     <a href="https://t.me/NatSlatvitskaya" class="capsule-btn" target="_blank" aria-label="Telegram">
                         <img src="images/telegram.svg" alt="Telegram" class="capsule-icon">
                     </a>
@@ -135,6 +132,85 @@
         </footer>
     </div>
 
+    <!-- Модальное окно (Попап проекта) -->
+    <div class="popup-overlay" id="project-popup">
+        <div class="popup-container">
+            <button class="popup-close" id="popup-close" aria-label="Закрыть">&times;</button>
+            
+            <div class="popup-scroll-content">
+                <!-- Шапка попапа -->
+                <div class="popup-header-grid">
+                    <div class="header-left-col">
+                        <h2 class="popup-project-title" id="popup-title">Название проекта</h2>
+                        <p class="popup-project-desc" id="popup-desc">Описание проекта</p>
+                        
+                        <div class="popup-info-block">
+                            <h3 class="popup-section-title">Что делала</h3>
+                            <p class="popup-role-text" id="popup-role">Графика, Сайты, брендинг</p>
+                        </div>
+                    </div>
+
+                    <div class="header-right-col">
+                        <div class="popup-tools-wrapper">
+                            <h3 class="popup-section-title">Инструменты</h3>
+                            <div class="tools-badges" id="popup-tools">
+                                <span class="tool-circle">Ai</span>
+                                <span class="tool-circle">Ps</span>
+                                <span class="tool-circle">Ae</span>
+                                <span class="tool-circle">Id</span>
+                                <span class="tool-circle">Fi</span>
+                                <span class="tool-circle">Mj</span>
+                            </div>
+                        </div>
+                        
+                        <a href="project-detail.html" class="popup-more-btn header-more-btn">
+                            Подробнее о проекте <span class="btn-arrow">&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Сетка из 9 изображений проекта (как на референсе) -->
+                <div class="popup-gallery-grid" id="popup-gallery">
+                    <div class="gallery-card card-full">
+                        <div class="image-placeholder"><span class="img-num">Изображение проекта 1</span></div>
+                    </div>
+                    <div class="gallery-card card-half">
+                        <div class="image-placeholder"><span class="img-num">Изображение 2</span></div>
+                    </div>
+                    <div class="gallery-card card-half">
+                        <div class="image-placeholder"><span class="img-num">Изображение 3</span></div>
+                    </div>
+                    <div class="gallery-card card-full">
+                        <div class="image-placeholder"><span class="img-num">Изображение 4</span></div>
+                    </div>
+                    <div class="gallery-card card-half">
+                        <div class="image-placeholder"><span class="img-num">Изображение 5</span></div>
+                    </div>
+                    <div class="gallery-card card-half">
+                        <div class="image-placeholder"><span class="img-num">Изображение 6</span></div>
+                    </div>
+                    <div class="gallery-card card-half">
+                        <div class="image-placeholder"><span class="img-num">Изображение 7</span></div>
+                    </div>
+                    <div class="gallery-card card-half">
+                        <div class="image-placeholder"><span class="img-num">Изображение 8</span></div>
+                    </div>
+                    <div class="gallery-card card-full">
+                        <div class="image-placeholder"><span class="img-num">Изображение 9</span></div>
+                    </div>
+                </div>
+
+                <!-- Подвал попапа -->
+                <div class="popup-footer-bar">
+                    <a href="https://t.me/NatSlatvitskaya" target="_blank" class="popup-telegram-link">@NatSlatvitskaya</a>
+                    <a href="project-detail.html" class="popup-more-btn footer-more-btn">
+                        Подробнее о проекте <span class="btn-arrow">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Интерактивные скрипты -->
     <script>
         const glow = document.getElementById('cursor-glow');
@@ -149,11 +225,119 @@
                 e.target.closest('a') || 
                 e.target.closest('.project-card') || 
                 e.target.closest('.social-capsule') ||
+                e.target.closest('.popup-container') ||
                 e.target.closest('button')
             ) {
                 return;
             }
             document.body.classList.toggle('alt-theme');
+        });
+
+        // Данные для карточек проектов
+        const projectsData = {
+            'SMART': {
+                title: 'SMART',
+                desc: 'Описание проекта SMART. Разработка уникального фирменного стиля и визуальной платформы бренда.',
+                tools: ['Ai', 'Ps', 'Ae', 'Id', 'Fi', 'Mj'],
+                role: 'Графика, Сайты, брендинг'
+            },
+            'MEMORIA': {
+                title: 'MEMORIA',
+                desc: 'Описание проекта MEMORIA. Дизайн мобильного приложения и коммуникационный дизайн.',
+                tools: ['Fi', 'Ps', 'Ai', '3D'],
+                role: 'UI/UX дизайн, Иллюстрации, брендинг'
+            },
+            'LIDIA&POGGIO': {
+                title: 'LIDIA&POGGIO',
+                desc: 'Описание проекта LIDIA&POGGIO. Комплексный ребрендинг и оформление маркетинг-материалов.',
+                tools: ['Ai', 'Ps', 'Id', 'Fi'],
+                role: 'Брендинг, Полиграфия, Сайты'
+            },
+            'AGLY': {
+                title: 'AGLY',
+                desc: 'Описание проекта AGLY. Кастомная веб-платформа и серия векторных иллюстраций.',
+                tools: ['Fi', 'Ai', 'Ae'],
+                role: 'Графика, Иллюстрации, Веб-дизайн'
+            },
+            'SLET': {
+                title: 'SLET',
+                desc: 'Описание проекта SLET. Разработка фирменного стиля и мерча для фестиваля.',
+                tools: ['Ai', 'Ps', 'Mj'],
+                role: 'Айдентика, Графика, Мерч'
+            },
+            'SMARTY': {
+                title: 'SMARTY',
+                desc: 'Описание проекта SMARTY. Создание цифрового бренда и интерфейса приложения.',
+                tools: ['Fi', 'Ps', 'Ai'],
+                role: 'Сайты, UI/UX, Брендинг'
+            },
+            'ПРОЕКТ 7': {
+                title: 'ПРОЕКТ 7',
+                desc: 'Описание проекта 7. Концептуальный бренд-дизайн и упаковка продуктов.',
+                tools: ['Ai', 'Ps', '3D'],
+                role: 'Упаковка, Графика, Брендинг'
+            },
+            'ПРОЕКТ 8': {
+                title: 'ПРОЕКТ 8',
+                desc: 'Описание проекта 8. Визуальная стратегия и коммуникационные материалы.',
+                tools: ['Fi', 'Ai', 'Ps'],
+                role: 'Коммуникации, Сайты, Графика'
+            }
+        };
+
+        const popup = document.getElementById('project-popup');
+        const popupClose = document.getElementById('popup-close');
+        const popupTitle = document.getElementById('popup-title');
+        const popupDesc = document.getElementById('popup-desc');
+        const popupRole = document.getElementById('popup-role');
+        const popupTools = document.getElementById('popup-tools');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        projectCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const cardName = card.getAttribute('data-project') || 'SMART';
+                const data = projectsData[cardName] || {
+                    title: cardName,
+                    desc: 'Описание проекта',
+                    tools: ['Ai', 'Ps', 'Fi'],
+                    role: 'Графика, Сайты, брендинг'
+                };
+
+                if (popupTitle) popupTitle.textContent = data.title;
+                if (popupDesc) popupDesc.textContent = data.desc;
+                if (popupRole) popupRole.textContent = data.role;
+                
+                if (popupTools) {
+                    popupTools.innerHTML = data.tools.map(t => `<span class="tool-circle">${t}</span>`).join('');
+                }
+
+                popup.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        if (popupClose) {
+            popupClose.addEventListener('click', () => {
+                popup.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        }
+
+        if (popup) {
+            popup.addEventListener('click', (e) => {
+                if (e.target === popup) {
+                    popup.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && popup && popup.classList.contains('active')) {
+                popup.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         });
     </script>
 </body>
