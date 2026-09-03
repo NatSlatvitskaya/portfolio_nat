@@ -71,19 +71,22 @@ body {
     background: radial-gradient(circle, rgba(249, 143, 200, 0.45) 0%, rgba(249, 143, 200, 0.15) 40%, rgba(249, 143, 200, 0) 70%);
 }
 
-/* --- Базовый класс для фонов (100% ширина/высота без пустых полос справа) --- */
+/* --- Базовый класс для фонов с вылетом за края экрана (без полос и зазоров) --- */
 .bg-pattern {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-size: 100% 100%; /* Заполняет экран строго от края до края без зазоров */
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    width: auto;
+    height: auto;
+    background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
+    transform: scale(1.04); /* Масштабирование на 4% больше экрана для 100% покрытия */
 }
 
 .bg-pattern.pattern-1 {
