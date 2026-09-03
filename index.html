@@ -3,147 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Наташа — Портфолио</title>
+    <title>Портфолио — Наташа</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Статичные фоны с разными режимами наложения -->
+
+    <!-- Динамические фоны страницы -->
     <div class="bg-pattern pattern-1"></div>
     <div class="bg-pattern pattern-2"></div>
 
-    <!-- Интерактивное свечение за курсором -->
+    <!-- Свечение за курсором -->
     <div class="cursor-glow" id="cursor-glow"></div>
 
+    <!-- Главный контейнер страницы -->
     <div class="portfolio-container">
-        <!-- Шапка (Header) -->
+
+        <!-- Шапка страницы (Header) -->
         <header class="hero-header">
             <div class="header-container">
                 <div class="header-left">
-                    <a href="projects.html" class="nav-btn">Все проекты</a>
+                    <a href="#projects" class="nav-btn">все проекты</a>
                 </div>
                 <div class="header-center">
                     <h1 class="greeting-text">
-                        Привет, Я — Наташа<br>
-                        <span class="greeting-tag">{графический и бренд-дизайнер}</span>
+                        Привет, я — Наташа.<br>
+                        <span class="greeting-tag">графический и бренд-дизайнер</span>
                     </h1>
                 </div>
                 <div class="header-right">
-                    <a href="about.html" class="nav-btn experience-text">6 лет опыта</a>
+                    <span class="experience-text">6 лет опыта</span>
                 </div>
             </div>
         </header>
 
         <!-- Центральный персонаж (Кот) -->
         <div class="avatar-wrapper">
-            <img src="images/avatar.png" alt="Персонаж Кот" class="avatar-img">
+            <img src="images/avatar.png" alt="Персонаж Наташи" class="avatar-img">
         </div>
 
-        <!-- Контейнер с 8 плашками проектов -->
-        <div class="cards-container">
+        <!-- Контейнер для 8 интерактивных плашек проектов -->
+        <div class="cards-container" id="projects">
             <div class="project-card card-smart" data-project="SMART">
                 <div class="card-inner">
                     <div class="card-preview"></div>
-                    <div class="card-label">SMART</div>
+                    <span class="card-label">SMART</span>
+                </div>
+            </div>
+
+            <div class="project-card card-project-tr" data-project="LIDIA&POGGIO">
+                <div class="card-inner">
+                    <div class="card-preview"></div>
+                    <span class="card-label">LIDIA&POGGIO</span>
+                </div>
+            </div>
+
+            <div class="project-card card-lidia" data-project="AGLY">
+                <div class="card-inner">
+                    <div class="card-preview"></div>
+                    <span class="card-label">AGLY</span>
                 </div>
             </div>
 
             <div class="project-card card-memoria" data-project="MEMORIA">
                 <div class="card-inner">
                     <div class="card-preview"></div>
-                    <div class="card-label">MEMORIA</div>
-                </div>
-            </div>
-
-            <div class="project-card card-lidia" data-project="LIDIA&POGGIO">
-                <div class="card-inner">
-                    <div class="card-preview"></div>
-                    <div class="card-label">LIDIA&POGGIO</div>
-                </div>
-            </div>
-
-            <div class="project-card card-agly" data-project="AGLY">
-                <div class="card-inner">
-                    <div class="card-preview"></div>
-                    <div class="card-label">AGLY</div>
+                    <span class="card-label">MEMORIA</span>
                 </div>
             </div>
 
             <div class="project-card card-slet" data-project="SLET">
                 <div class="card-inner">
                     <div class="card-preview"></div>
-                    <div class="card-label">SLET</div>
+                    <span class="card-label">SLET</span>
                 </div>
             </div>
 
             <div class="project-card card-smarty" data-project="SMARTY">
                 <div class="card-inner">
                     <div class="card-preview"></div>
-                    <div class="card-label">SMARTY</div>
+                    <span class="card-label">SMARTY</span>
                 </div>
             </div>
 
-            <div class="project-card card-project-br" data-project="ПРОЕКТ 7">
+            <div class="project-card card-agly" data-project="ПРОЕКТ 7">
                 <div class="card-inner">
                     <div class="card-preview"></div>
-                    <div class="card-label">ПРОЕКТ</div>
+                    <span class="card-label">ПРОЕКТ 7</span>
                 </div>
             </div>
 
-            <div class="project-card card-project-tr" data-project="ПРОЕКТ 8">
+            <div class="project-card card-project-br" data-project="ПРОЕКТ 8">
                 <div class="card-inner">
                     <div class="card-preview"></div>
-                    <div class="card-label">ПРОЕКТ</div>
+                    <span class="card-label">ПРОЕКТ 8</span>
                 </div>
             </div>
         </div>
 
-        <!-- Подвал с тегами и капсулой -->
+        <!-- Подвал страницы (Footer) -->
         <footer class="hero-footer">
             <div class="footer-left">
-                <span class="tag-text">{брендинг}</span>
-                <span class="tag-text">{веб-дизайн}</span>
+                <span class="tag-text">#брендинг</span>
+                <span class="tag-text">#веб-дизайн</span>
             </div>
-            
+
             <div class="footer-center">
                 <div class="social-capsule">
-                    <a href="#" class="capsule-btn" target="_blank" aria-label="CV">
-                        <img src="images/cv.svg" alt="CV" class="capsule-icon">
+                    <!-- 1. CV -->
+                    <a href="resume.pdf" target="_blank" class="capsule-btn" title="CV">
+                        <img src="images/cv.svg" alt="CV" class="capsule-icon-file" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="capsule-fallback-icon">CV</span>
                     </a>
-                    <a href="https://dprofile.ru/nat_slatvitskaya" class="capsule-btn" target="_blank" aria-label="Dprofile">
-                        <img src="images/dprofile.svg" alt="Dprofile" class="capsule-icon">
+
+                    <!-- 2. Dprofile -->
+                    <a href="https://dprofile.ru" target="_blank" class="capsule-btn" title="Dprofile">
+                        <img src="images/dprofile.svg" alt="Dprofile" class="capsule-icon-file" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="capsule-fallback-icon dp-icon">
+                            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="2"/><path d="M8 7H13C15.2 7 17 8.8 17 11V13C17 15.2 15.2 17 13 17H8V7Z" stroke="currentColor" stroke-width="2"/></svg>
+                        </span>
                     </a>
-                    <a href="https://www.behance.net/nnzuzu5f5d" class="capsule-btn" target="_blank" aria-label="Behance">
-                        <img src="images/behance.svg" alt="Behance" class="capsule-icon">
+
+                    <!-- 3. Behance -->
+                    <a href="https://behance.net" target="_blank" class="capsule-btn" title="Behance">
+                        <img src="images/behance.svg" alt="Behance" class="capsule-icon-file" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="capsule-fallback-icon be-icon">Bē</span>
                     </a>
-                    <span class="capsule-divider"></span>
-                    <a href="https://t.me/NatSlatvitskaya" class="capsule-btn" target="_blank" aria-label="Telegram">
-                        <img src="images/telegram.svg" alt="Telegram" class="capsule-icon">
+
+                    <!-- ЕДИНСТВЕННЫЙ РАЗДЕЛИТЕЛЬ МЕЖДУ СЕКЦИЯМИ ПО FIGMA -->
+                    <div class="capsule-divider"></div>
+
+                    <!-- 4. Telegram -->
+                    <a href="https://t.me/NatSlatvitskaya" target="_blank" class="capsule-btn" title="Telegram">
+                        <img src="images/telegram.svg" alt="Telegram" class="capsule-icon-file" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="capsule-fallback-icon">
+                            <svg viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13" stroke="currentColor" stroke-width="2"/><path d="M22 2L15 22L11 13L2 9L22 2Z" fill="currentColor"/></svg>
+                        </span>
                     </a>
-                    <a href="mailto:n.slatvickaya@gmail.com" class="capsule-btn" aria-label="Email">
-                        <img src="images/email.svg" alt="Email" class="capsule-icon">
+
+                    <!-- 5. E-mail -->
+                    <a href="mailto:NatSlatvitskaya@gmail.com" class="capsule-btn" title="E-mail">
+                        <img src="images/email.svg" alt="E-mail" class="capsule-icon-file" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="capsule-fallback-icon">
+                            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="3" stroke="currentColor" stroke-width="2"/><path d="M3 7L12 13L21 7" stroke="currentColor" stroke-width="2"/></svg>
+                        </span>
                     </a>
                 </div>
             </div>
-            
+
             <div class="footer-right">
-                <span class="tag-text">{коммуникация}</span>
-                <span class="tag-text">{иллюстрация}</span>
+                <span class="tag-text">#коммуникация</span>
+                <span class="tag-text">#иллюстрация</span>
             </div>
         </footer>
+
     </div>
 
     <!-- Модальное окно (Попап проекта) -->
     <div class="popup-overlay" id="project-popup">
         <div class="popup-container">
             <button class="popup-close" id="popup-close" aria-label="Закрыть">&times;</button>
-            
+
             <div class="popup-scroll-content">
                 <!-- Шапка попапа -->
                 <div class="popup-header-grid">
                     <div class="header-left-col">
                         <h2 class="popup-project-title" id="popup-title">Название проекта</h2>
                         <p class="popup-project-desc" id="popup-desc">Описание проекта</p>
-                        
+
                         <div class="popup-info-block">
                             <h3 class="popup-section-title">Что делала</h3>
                             <p class="popup-role-text" id="popup-role">Графика, Сайты, брендинг</p>
@@ -155,55 +181,25 @@
                             <h3 class="popup-section-title">Инструменты</h3>
                             <div class="tools-badges" id="popup-tools">
                                 <span class="tool-circle">Ai</span>
-                                <span class="tool-circle">Ps</span>
-                                <span class="tool-circle">Ae</span>
-                                <span class="tool-circle">Id</span>
                                 <span class="tool-circle">Fi</span>
-                                <span class="tool-circle">Mj</span>
                             </div>
                         </div>
-                        
-                        <a href="project-detail.html" class="popup-more-btn header-more-btn">
+
+                        <a href="https://dprofile.ru/case/121146/memoriabook-l-visual-identity" target="_blank" class="popup-more-btn header-more-btn">
                             Подробнее о проекте <span class="btn-arrow">&rarr;</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Сетка из 9 изображений проекта (как на референсе) -->
+                <!-- Сетка из 9 изображений проекта -->
                 <div class="popup-gallery-grid" id="popup-gallery">
-                    <div class="gallery-card card-full">
-                        <div class="image-placeholder"><span class="img-num">Изображение проекта 1</span></div>
-                    </div>
-                    <div class="gallery-card card-half">
-                        <div class="image-placeholder"><span class="img-num">Изображение 2</span></div>
-                    </div>
-                    <div class="gallery-card card-half">
-                        <div class="image-placeholder"><span class="img-num">Изображение 3</span></div>
-                    </div>
-                    <div class="gallery-card card-full">
-                        <div class="image-placeholder"><span class="img-num">Изображение 4</span></div>
-                    </div>
-                    <div class="gallery-card card-half">
-                        <div class="image-placeholder"><span class="img-num">Изображение 5</span></div>
-                    </div>
-                    <div class="gallery-card card-half">
-                        <div class="image-placeholder"><span class="img-num">Изображение 6</span></div>
-                    </div>
-                    <div class="gallery-card card-half">
-                        <div class="image-placeholder"><span class="img-num">Изображение 7</span></div>
-                    </div>
-                    <div class="gallery-card card-half">
-                        <div class="image-placeholder"><span class="img-num">Изображение 8</span></div>
-                    </div>
-                    <div class="gallery-card card-full">
-                        <div class="image-placeholder"><span class="img-num">Изображение 9</span></div>
-                    </div>
+                    <!-- Заполняется динамически через JS -->
                 </div>
 
                 <!-- Подвал попапа -->
                 <div class="popup-footer-bar">
                     <a href="https://t.me/NatSlatvitskaya" target="_blank" class="popup-telegram-link">@NatSlatvitskaya</a>
-                    <a href="project-detail.html" class="popup-more-btn footer-more-btn">
+                    <a href="https://dprofile.ru/case/121146/memoriabook-l-visual-identity" target="_blank" class="popup-more-btn footer-more-btn">
                         Подробнее о проекте <span class="btn-arrow">&rarr;</span>
                     </a>
                 </div>
@@ -211,7 +207,6 @@
         </div>
     </div>
 
-    <!-- Интерактивные скрипты -->
     <script>
         const glow = document.getElementById('cursor-glow');
         if (glow) {
@@ -233,55 +228,89 @@
             document.body.classList.toggle('alt-theme');
         });
 
-        // Данные для карточек проектов
+        // Структура типов карточек сетки по умолчанию
+        const galleryCardTypes = [
+            'card-full', 'card-half', 'card-half',
+            'card-full', 'card-half', 'card-half',
+            'card-half', 'card-half', 'card-full'
+        ];
+
+        // Данные для каждого проекта
         const projectsData = {
             'SMART': {
                 title: 'SMART',
                 desc: 'Описание проекта SMART. Разработка уникального фирменного стиля и визуальной платформы бренда.',
                 tools: ['Ai', 'Ps', 'Ae', 'Id', 'Fi', 'Mj'],
-                role: 'Графика, Сайты, брендинг'
+                role: 'Графика, Сайты, брендинг',
+                cover: 'images/projects/smart-cover.jpg',
+                images: []
             },
             'MEMORIA': {
-                title: 'MEMORIA',
-                desc: 'Описание проекта MEMORIA. Дизайн мобильного приложения и коммуникационный дизайн.',
-                tools: ['Fi', 'Ps', 'Ai', '3D'],
-                role: 'UI/UX дизайн, Иллюстрации, брендинг'
+                title: 'Memoria book',
+                desc: 'Команда MB обратилась ко мне с амбициозной, но трогательной задачей: создать визуальный язык, который мог бы передать ценность человеческой памяти, теплоту семейных уз и тонкость работы с личными историями. Цель состояла в том, чтобы айдентика, выделила проект и вызывала доверие у потенциальных клиентов, подчеркивая уникальность и эмоциональную глубину.',
+                tools: ['Ai', 'Fi'],
+                role: 'Брендинг',
+                link: 'https://dprofile.ru/case/121146/memoriabook-l-visual-identity',
+                cover: 'images/projects/memoria-cover.jpg',
+                images: [
+                    { src: 'images/projects/memoria-1.jpg', type: 'card-full' },
+                    { src: 'images/projects/memoria-2.jpg', type: 'card-half' },
+                    { src: 'images/projects/memoria-3.jpg', type: 'card-half' },
+                    { src: 'images/projects/memoria-4.jpg', type: 'card-full' },
+                    { src: 'images/projects/memoria-5.jpg', type: 'card-half' },
+                    { src: 'images/projects/memoria-6.jpg', type: 'card-half' },
+                    { src: 'images/projects/memoria-7.jpg', type: 'card-half' },
+                    { src: 'images/projects/memoria-8.jpg', type: 'card-half' },
+                    { src: 'images/projects/memoria-9.jpg', type: 'card-full' }
+                ]
             },
             'LIDIA&POGGIO': {
                 title: 'LIDIA&POGGIO',
                 desc: 'Описание проекта LIDIA&POGGIO. Комплексный ребрендинг и оформление маркетинг-материалов.',
                 tools: ['Ai', 'Ps', 'Id', 'Fi'],
-                role: 'Брендинг, Полиграфия, Сайты'
+                role: 'Брендинг, Полиграфия, Сайты',
+                cover: 'images/projects/lidia-cover.jpg',
+                images: []
             },
             'AGLY': {
                 title: 'AGLY',
                 desc: 'Описание проекта AGLY. Кастомная веб-платформа и серия векторных иллюстраций.',
                 tools: ['Fi', 'Ai', 'Ae'],
-                role: 'Графика, Иллюстрации, Веб-дизайн'
+                role: 'Графика, Иллюстрации, Веб-дизайн',
+                cover: 'images/projects/agly-cover.jpg',
+                images: []
             },
             'SLET': {
                 title: 'SLET',
                 desc: 'Описание проекта SLET. Разработка фирменного стиля и мерча для фестиваля.',
                 tools: ['Ai', 'Ps', 'Mj'],
-                role: 'Айдентика, Графика, Мерч'
+                role: 'Айдентика, Графика, Мерч',
+                cover: 'images/projects/slet-cover.jpg',
+                images: []
             },
             'SMARTY': {
                 title: 'SMARTY',
                 desc: 'Описание проекта SMARTY. Создание цифрового бренда и интерфейса приложения.',
                 tools: ['Fi', 'Ps', 'Ai'],
-                role: 'Сайты, UI/UX, Брендинг'
+                role: 'Сайты, UI/UX, Брендинг',
+                cover: 'images/projects/smarty-cover.jpg',
+                images: []
             },
             'ПРОЕКТ 7': {
                 title: 'ПРОЕКТ 7',
                 desc: 'Описание проекта 7. Концептуальный бренд-дизайн и упаковка продуктов.',
                 tools: ['Ai', 'Ps', '3D'],
-                role: 'Упаковка, Графика, Брендинг'
+                role: 'Упаковка, Графика, Брендинг',
+                cover: '',
+                images: []
             },
             'ПРОЕКТ 8': {
                 title: 'ПРОЕКТ 8',
                 desc: 'Описание проекта 8. Визуальная стратегия и коммуникационные материалы.',
                 tools: ['Fi', 'Ai', 'Ps'],
-                role: 'Коммуникации, Сайты, Графика'
+                role: 'Коммуникации, Сайты, Графика',
+                cover: '',
+                images: []
             }
         };
 
@@ -291,8 +320,22 @@
         const popupDesc = document.getElementById('popup-desc');
         const popupRole = document.getElementById('popup-role');
         const popupTools = document.getElementById('popup-tools');
+        const popupGallery = document.getElementById('popup-gallery');
         const projectCards = document.querySelectorAll('.project-card');
 
+        // Автоматическая установка обложек плашек на главном экране
+        projectCards.forEach(card => {
+            const cardName = card.getAttribute('data-project');
+            const data = projectsData[cardName];
+            if (data && data.cover) {
+                const preview = card.querySelector('.card-preview');
+                if (preview) {
+                    preview.style.backgroundImage = `url('${data.cover}')`;
+                }
+            }
+        });
+
+        // Клик по карточке проекта
         projectCards.forEach(card => {
             card.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -301,15 +344,56 @@
                     title: cardName,
                     desc: 'Описание проекта',
                     tools: ['Ai', 'Ps', 'Fi'],
-                    role: 'Графика, Сайты, брендинг'
+                    role: 'Графика, Сайты, брендинг',
+                    images: []
                 };
 
                 if (popupTitle) popupTitle.textContent = data.title;
                 if (popupDesc) popupDesc.textContent = data.desc;
                 if (popupRole) popupRole.textContent = data.role;
-                
+
                 if (popupTools) {
                     popupTools.innerHTML = data.tools.map(t => `<span class="tool-circle">${t}</span>`).join('');
+                }
+
+                // Динамическая ссылка на кейс Dprofile
+                const moreBtns = document.querySelectorAll('.popup-more-btn');
+                moreBtns.forEach(btn => {
+                    if (data.link) {
+                        btn.href = data.link;
+                        btn.target = '_blank';
+                    } else {
+                        btn.href = 'project-detail.html';
+                        btn.removeAttribute('target');
+                    }
+                });
+
+                // Генерация сетки изображений для попапа
+                if (popupGallery) {
+                    popupGallery.innerHTML = '';
+                    for (let i = 0; i < 9; i++) {
+                        const cardDiv = document.createElement('div');
+                        let cardType = galleryCardTypes[i];
+                        let imgSrc = '';
+
+                        if (data.images && data.images[i]) {
+                            if (typeof data.images[i] === 'object') {
+                                imgSrc = data.images[i].src;
+                                if (data.images[i].type) cardType = data.images[i].type;
+                            } else {
+                                imgSrc = data.images[i];
+                            }
+                        }
+
+                        cardDiv.className = `gallery-card ${cardType}`;
+                        
+                        if (imgSrc) {
+                            cardDiv.innerHTML = `<img src="${imgSrc}" alt="${data.title} ${i+1}">`;
+                        } else {
+                            cardDiv.innerHTML = `<div class="image-placeholder"><span class="img-num">Изображение ${i+1}</span></div>`;
+                        }
+                        popupGallery.appendChild(cardDiv);
+                    }
                 }
 
                 popup.classList.add('active');
@@ -332,13 +416,6 @@
                 }
             });
         }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && popup && popup.classList.contains('active')) {
-                popup.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
     </script>
 </body>
 </html>

@@ -1,0 +1,49 @@
+[33m2b83abc[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Fix social capsule pixel-perfect style to match Figma layout with dark circular buttons
+[33me9f8e6d[m Replace index.html and style.css with clean complete versions containing all 5 social links and header/footer texts
+[33ma6cde95[m Add main screen covers and flexible custom order for popup gallery images
+[33ma028ea8[m Fix script syntax typo cardDiv and restore full interactive behavior
+[33ma65bc41[m Add Memoria book case details, dynamic image gallery and updated CSS
+[33me69c9fa[m Update index.html with complete Memoria book content and dynamic Dprofile link
+[33mfd2f932[m Fill Memoria book project popup details and Dprofile link
+[33m69fec36[m Fix background pattern bleed-out to guarantee no gaps on any screen
+[33m1c47417[m Update full style.css to fix background pattern right gap
+[33m68dcb32[m Update style.css with 30% smaller cursor hotspot
+[33m2e3ce85[m Fix cursor glow z-index to sit under background pattern layer
+[33m2ab0c82[m Update full style.css with clean mix-blend-mode plus-lighter cursor glow
+[33mab4c8d2[m Add project modal popup with exact Figma specs, 9-image grid, custom scroll, and dynamic cards data
+[33mc048c4f[m Update custom cursor image
+[33m5823fc8[m Set top and bottom paddings to exactly 28px
+[33mb429f68[m Add adaptive side paddings for footer tags to create space around capsule
+[33m3d888cf[m Align footer elements using Distribute Horizontal Spacing (flex space-between)
+[33m93d8f6e[m Make avatar image dynamically scale with viewport height using vh clamp
+[33mccdfb30[m Set laptop capsule size to compact 320x80px to prevent overlapping avatar
+[33m2b63760[m Update capsule height to 96px for laptop/tablet and 80px for mobile
+[33m43795f6[m Update capsule responsive dimensions per Figma specs and set project cards border-radius to 6px
+[33m9d652e0[m Add custom SVG icons and update glassmorphism capsule specs from Figma
+[33m03da99b[m Adjust laptop card size to 108px and make mobile cards scale with viewport height
+[33m7281723[m Reduce card size on laptops/tablets and fix mobile background blend-mode bug
+[33m71a0d5b[m Hide avatar on mobile and update card labels to 16px on small screens
+[33mf2c154a[m Fix background transition bug by using dual layer opacity toggling
+[33m66af03f[m Update full style.css to prevent file truncation
+[33ma57b9bd[m Use darken for pattern 1 and screen for flame background 2
+[33m24e26a7[m Final fix: darken blend mode under pattern and gray background
+[33m61cfbaf[m Move cursor glow layer underneath the pattern with darken mix-blend-mode
+[33m8a5a5dc[m Update style sheets with darken blend mode and html gray color #242424
+[33m21d56ee[m Update pattern images and apply style changes
+[33mdc17b6a[m Make background glow color switch to pink on alternative theme click
+[33mbefd731[m Apply full layout update: 64px cursor, brighter glow, and click bg change
+[33me45bd89[m Increase cursor size to 64px and double the background glow brightness
+[33mefd405e[m Add custom mouse cursor and interactive background glow
+[33mfaf41fa[m Add custom mouse cursor and interactive background glow
+[33m28c5e8f[m Update style sheets to include green cards and 18px label fonts
+[33mc38b440[m Make experience text link to about page and increase project card font size to 18px
+[33m22e855c[m Change project cards background to green, label color to dark grey, and remove border
+[33mc5d5029[m Fix background pattern visibility layers
+[33m6722a1e[m Fix grid coordinates mismatch in media query for laptops
+[33m3a94037[m Update layout according to Figma and fix font sizes
+[33mc3b64fa[m Compress background image for faster loading
+[33maad48a4[m Update layout for 15.6 laptops and add pattern background
+[33mb498741[m Apply new responsive design with cards
+[33m2b6eeac[m Replace background video with static image
+[33m5b23b9a[m Update video to compressed 7MB version
+[33m6e92b75[m Initial commit: hero section setup
