@@ -324,28 +324,27 @@ body {
     font-weight: 400;
 }
 
-/* Стеклянная капсула по Figma */
+/* Стеклянная капсула по Figma: отступы сверху/снизу 28px, по бокам 40px */
 .social-capsule {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px; /* Отступы между иконками по 20px для десктопа/ноутбуков */
+    gap: 20px; /* Отступы между иконками 20px для десктопа/ноутбука */
     width: auto;
     max-width: 95vw;
-    height: clamp(70px, 10vh, 148px);
+    padding: 28px 40px;
     background: rgba(255, 255, 255, 0.16);
     backdrop-filter: blur(25px) saturate(180%);
     -webkit-backdrop-filter: blur(25px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 100px;
-    padding: 0 clamp(24px, 3.5vw, 40px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* Круглые темные кнопки для каждой иконки */
+/* Круглые темные кнопки точно по размеру иконки */
 .capsule-btn {
-    width: clamp(48px, 7vh, 100px);
-    height: clamp(48px, 7vh, 100px);
+    width: 84px;
+    height: 84px;
     border-radius: 50%;
     background-color: #121A18;
     display: flex;
@@ -356,6 +355,7 @@ body {
     transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.25s ease, box-shadow 0.25s ease;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .capsule-btn:hover {
@@ -364,17 +364,16 @@ body {
     box-shadow: 0 8px 20px rgba(32, 234, 167, 0.3);
 }
 
-/* Иконка заполняет кнопку без лишних отступов вокруг */
+/* Иконка в Full HD: ровно 84px */
 .capsule-icon-file {
-    width: 100%;
-    height: 100%;
+    width: 84px;
+    height: 84px;
     object-fit: contain;
     display: block;
-    padding: clamp(10px, 1.6vh, 22px);
 }
 
 .capsule-text-btn {
-    font-size: clamp(15px, 2.4vh, 30px);
+    font-size: 30px;
     font-weight: 700;
     color: #20EAA7;
     text-transform: uppercase;
@@ -390,16 +389,46 @@ body {
 /* Единственный вертикальный разделитель */
 .capsule-divider {
     width: 2px;
-    height: clamp(32px, 5.5vh, 70px);
+    height: 64px;
     background-color: rgba(255, 255, 255, 0.35);
     border-radius: 2px;
-    margin: 0 clamp(4px, 0.8vw, 12px);
+    margin: 0 4px;
 }
 
-@media (max-width: 900px) {
+/* Планшеты (иконки 64px) */
+@media (max-width: 1024px) {
     .social-capsule {
-        gap: 6px; /* Отступы по 6px для планшетов и мобильных */
-        padding: 0 16px;
+        gap: 12px;
+        padding: 22px 32px;
+    }
+    .capsule-btn, .capsule-icon-file {
+        width: 64px;
+        height: 64px;
+    }
+    .capsule-text-btn {
+        font-size: 22px;
+    }
+    .capsule-divider {
+        height: 48px;
+    }
+}
+
+/* Мобильные и планшеты (иконки 48px, отступы между иконками 6px) */
+@media (max-width: 768px) {
+    .social-capsule {
+        gap: 6px; /* Отступы между иконками 6px */
+        padding: 16px 24px;
+    }
+    .capsule-btn, .capsule-icon-file {
+        width: 48px;
+        height: 48px;
+    }
+    .capsule-text-btn {
+        font-size: 16px;
+    }
+    .capsule-divider {
+        height: 36px;
+        margin: 0 2px;
     }
 }
 
