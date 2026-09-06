@@ -67,7 +67,7 @@
                 </div>
             </div>
 
-            <!-- NAME 3: средний внутренний левый -->
+            <!-- NAME 3: средний внутренний левый (MEMORIA) -->
             <div class="project-card card-memoria" data-project="MEMORIA">
                 <div class="card-inner">
                     <div class="card-preview"></div>
@@ -225,7 +225,7 @@
             document.body.classList.toggle('alt-theme');
         });
 
-        // Структура типов карточек сетки по умолчанию
+        // Структура типов карточек сетки по умолчанию (1, 4, 9 — широкие; остальные квадратные)
         const galleryCardTypes = [
             'card-full', 'card-half', 'card-half',
             'card-full', 'card-half', 'card-half',
@@ -327,7 +327,6 @@
             if (data && data.cover) {
                 const preview = card.querySelector('.card-preview');
                 if (preview) {
-                    // Поддержка пути images/projects/ или images/
                     const img = new Image();
                     img.onload = () => {
                         preview.style.backgroundImage = `url('${data.cover}')`;
@@ -362,6 +361,7 @@
                     popupTools.innerHTML = data.tools.map(t => `<span class="tool-circle">${t}</span>`).join('');
                 }
 
+                // Ссылка на подробности проекта
                 const moreBtns = document.querySelectorAll('.popup-more-btn');
                 moreBtns.forEach(btn => {
                     if (data.link) {
@@ -373,6 +373,7 @@
                     }
                 });
 
+                // Генерация изображений в галерее попапа
                 if (popupGallery) {
                     popupGallery.innerHTML = '';
                     for (let i = 0; i < 9; i++) {
@@ -390,9 +391,29 @@
                         }
 
                         cardDiv.className = `gallery-card ${cardType}`;
-                        
+
                         if (imgSrc) {
-                            cardDiv.innerHTML = `<img src="${imgSrc}" alt="${data.title} ${i+1}">`;
+                            const filename = imgSrc.split('/').pop();
+                            const filenameSpace = filename.replace('-', ' ');
+                            const filenameDash = filename.replace(' ', '-');
+                            cardDiv.innerHTML = `<img src="${imgSrc}" alt="${data.title} ${i+1}" onerror="
+                                if (!this.dataset.step) {
+                                    this.dataset.step = 1;
+                                    this.src = 'images/${filename}';
+                                } else if (this.dataset.step == 1) {
+                                    this.dataset.step = 2;
+                                    this.src = 'images/projects/${filenameSpace}';
+                                } else if (this.dataset.step == 2) {
+                                    this.dataset.step = 3;
+                                    this.src = 'images/${filenameSpace}';
+                                } else if (this.dataset.step == 3) {
+                                    this.dataset.step = 4;
+                                    this.src = 'images/projects/${filenameDash}';
+                                } else if (this.dataset.step == 4) {
+                                    this.dataset.step = 5;
+                                    this.src = 'images/${filenameDash}';
+                                }
+                            ">`;
                         } else {
                             cardDiv.innerHTML = `<div class="image-placeholder"><span class="img-num">Изображение ${i+1}</span></div>`;
                         }
