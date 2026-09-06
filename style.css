@@ -312,37 +312,30 @@ body {
     right: 16%; 
 }
 
-/* --- ПОДВАЛ (FOOTER) --- */
+/* --- ПОДВАЛ (FOOTER) с абсолютно равными отступами между всеми элементами --- */
 .hero-footer {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: clamp(20px, 3.8vw, 68px); /* Одинаковый отступ между блоками */
     z-index: 10;
     max-width: 1920px;
     margin: 0 auto;
     padding: 0 4.2%;
 }
 
-.footer-left {
+.footer-left, .footer-right {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex: 1;
-    padding-right: clamp(24px, 3vw, 60px);
-}
-
-.footer-right {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex: 1;
-    padding-left: clamp(24px, 3vw, 60px);
+    gap: clamp(20px, 3.8vw, 68px); /* Точно такой же отступ между соседними тегами */
+    flex-shrink: 0;
 }
 
 .footer-center {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-shrink: 0;
 }
 
@@ -350,6 +343,7 @@ body {
     font-size: 16px;
     color: #20EAA7;
     font-weight: 400;
+    white-space: nowrap;
 }
 
 /* --- СТЕКЛЯННАЯ КАПСУЛА (По умолчанию: НОУТБУКИ / Экраны средних высот) --- */
