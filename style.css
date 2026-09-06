@@ -190,8 +190,8 @@ body {
     top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(260px, 36vh, 380px);
-    max-height: 48vh;
+    width: clamp(240px, 32vh, 340px);
+    max-height: 44vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -220,8 +220,8 @@ body {
 
 .project-card {
     position: absolute;
-    width: 130px;
-    height: 130px;
+    width: 108px;
+    height: 108px;
     pointer-events: auto;
     z-index: 7;
 }
@@ -235,7 +235,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 8px;
+    padding: 6px;
     overflow: hidden;
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -247,11 +247,11 @@ body {
     background-position: center center;
     background-repeat: no-repeat;
     border-radius: 4px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .card-label {
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 600;
     color: #242424;
     text-transform: uppercase;
@@ -265,7 +265,7 @@ body {
 .project-card:hover .card-inner {
     background-color: #F98FC8;
     box-shadow: 0 10px 25px rgba(249, 143, 200, 0.35);
-    transform: scale(1.5);
+    transform: scale(1.4);
 }
 
 .project-card:hover {
@@ -324,12 +324,12 @@ body {
     font-weight: 400;
 }
 
-/* Стеклянная капсула по Figma: отступы сверху/снизу 28px, по бокам 40px */
+/* Стеклянная капсула: отступы сверху/снизу 28px, по бокам 40px */
 .social-capsule {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px; /* Отступы между иконками 20px для десктопа/ноутбука */
+    gap: 20px;
     width: auto;
     max-width: 95vw;
     padding: 28px 40px;
@@ -341,7 +341,7 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* Круглые темные кнопки точно по размеру иконки */
+/* Круглые темные кнопки точно по размеру иконки (84px Full HD) */
 .capsule-btn {
     width: 84px;
     height: 84px;
@@ -364,7 +364,6 @@ body {
     box-shadow: 0 8px 20px rgba(32, 234, 167, 0.3);
 }
 
-/* Иконка в Full HD: ровно 84px */
 .capsule-icon-file {
     width: 84px;
     height: 84px;
@@ -416,7 +415,7 @@ body {
 /* Мобильные и планшеты (иконки 48px, отступы между иконками 6px) */
 @media (max-width: 768px) {
     .social-capsule {
-        gap: 6px; /* Отступы между иконками 6px */
+        gap: 6px;
         padding: 16px 24px;
     }
     .capsule-btn, .capsule-icon-file {
@@ -708,7 +707,7 @@ body {
     }
     .header-left { justify-content: flex-start; }
     .header-right { justify-content: flex-end; }
-    .avatar-wrapper { position: relative; top: 0; left: 0; transform: none; margin: 15px auto; width: 240px; }
+    .avatar-wrapper { position: relative; top: 0; left: 0; transform: none; margin: 15px auto; width: 220px; }
     .cards-container {
         position: relative;
         display: grid;
@@ -728,7 +727,7 @@ body {
         transform: none;
     }
     .project-card:hover .card-inner { transform: scale(1.15); }
-    .card-label { font-size: 16px; }
+    .card-label { font-size: 15px; }
     .hero-footer { flex-direction: column; row-gap: 24px; margin-top: 30px; }
     .footer-left, .footer-right { padding: 0; justify-content: center; gap: 30px; }
     .footer-center { order: 2; }
@@ -778,7 +777,7 @@ body {
     .cards-container { grid-template-columns: 1fr 1fr; gap: 10px; padding: 0; }
     .project-card { height: clamp(75px, 9.5vh, 105px); }
     .card-inner { padding: 5px; border-width: 2px; }
-    .card-label { font-size: 16px; }
+    .card-label { font-size: 15px; }
     .project-card:hover .card-inner { transform: scale(1.08); }
     .hero-footer { display: flex; flex-direction: column; gap: 14px; margin-top: 15px; }
     .footer-left, .footer-right { padding: 0; flex-wrap: wrap; justify-content: center; gap: 10px; }
