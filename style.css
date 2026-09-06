@@ -57,7 +57,7 @@ body {
     width: 600px; 
     height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(32, 234, 167, 0.45) 0%, rgba(32, 234, 167, 0.15) 40%, rgba(32, 234, 167, 0.70%));
+    background: radial-gradient(circle, rgba(32, 234, 167, 0.45) 0%, rgba(32, 234, 167, 0.15) 40%, rgba(32, 234, 167, 0) 70%);
     pointer-events: none;
     z-index: -3;
     will-change: transform;
@@ -438,8 +438,7 @@ body {
     background-color: rgba(255, 255, 255, 0.35);
     border-radius: 2px;
     margin: 0 2px;
-}
-/* ==========================================================================
+}/* ==========================================================================
    ПОЛНЫЙ СТИЛЕВОЙ ФАЙЛ STYLE.CSS — ЧАСТЬ 2 ИЗ 2
    ========================================================================== */
 
@@ -569,7 +568,7 @@ body {
 .popup-close {
     position: absolute;
     top: 28px;
-    right: 36px;
+    right: 40px;
     background: transparent;
     border: none;
     font-size: 24px;
@@ -586,15 +585,17 @@ body {
     opacity: 0.7;
 }
 
-/* Сетка шапки попапа: 2 колонки, совпадающие по сетке с картинками ниже (gap: 14px) */
+/* Шапка попапа: распределение по левой и правой частям как в Figma */
 .popup-header-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 32px;
     margin-bottom: 24px;
 }
 
 .header-left-col {
+    max-width: 60%;
     display: flex;
     flex-direction: column;
 }
@@ -618,7 +619,7 @@ body {
 }
 
 .popup-info-block {
-    margin-top: 2px;
+    margin-top: auto;
 }
 
 .popup-section-title {
@@ -637,30 +638,28 @@ body {
     line-height: 1.35;
 }
 
-/* Правая колонка шапки: начинается строго над левым краем правой картинки */
+/* Правая колонка: выровнена строго по правому краю контейнера */
 .header-right-col {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-end;
+    text-align: right;
     padding-top: 48px;
 }
 
-/* Блок инструментов смещен правее по направляющей, под крестик закрытия */
 .popup-tools-wrapper {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 8px;
-    margin-left: auto;
-    margin-right: 44px;
 }
 
 .tools-badges {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    justify-content: flex-start;
+    justify-content: flex-end;
 }
 
 .tool-circle {
@@ -678,7 +677,7 @@ body {
     user-select: none;
 }
 
-/* Кнопка 'Подробнее о проекте' выровнена СТРОГО ПО ЛЕВОМУ КРАЮ КАРТИНКИ, начертание Bold */
+/* Кнопка 'Подробнее о проекте': стрелочка по правому краю картинки, шрифт Bold */
 .popup-more-btn {
     font-size: 16px;
     font-weight: 700 !important; /* Начертание Bold */
@@ -687,8 +686,6 @@ body {
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    justify-content: flex-start;
-    align-self: flex-start;
     gap: 8px;
     transition: opacity 0.2s ease, transform 0.2s ease;
     margin-top: auto;
@@ -704,7 +701,7 @@ body {
     line-height: 1;
 }
 
-/* Сетка картинок: 2 колонки с точно таким же gap: 14px */
+/* Галерея изображений */
 .popup-gallery-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -752,11 +749,10 @@ body {
     font-weight: 500;
 }
 
-/* Подвал попапа: нижняя кнопка также выровнена по левому краю картинки */
+/* Подвал попапа */
 .popup-footer-bar {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     padding-top: 16px;
     border-top: 1px solid rgba(36, 36, 36, 0.15);
@@ -773,11 +769,6 @@ body {
 
 .popup-telegram-link:hover {
     opacity: 0.75;
-}
-
-.popup-footer-bar .popup-more-btn {
-    justify-self: start;
-    align-self: center;
 }
 
 /* --- АДАПТИВЫ ДЛЯ ПЛАНШЕТОВ И МОБИЛЬНЫХ СЕТОК --- */
@@ -837,17 +828,19 @@ body {
         right: 20px;
     }
     .popup-header-grid {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         gap: 20px;
-        padding-right: 0;
+    }
+    .header-left-col {
+        max-width: 100%;
     }
     .header-right-col {
         padding-top: 0;
+        align-items: flex-start;
+        text-align: left;
         gap: 16px;
     }
     .popup-tools-wrapper {
-        margin-left: 0;
-        margin-right: 0;
         align-items: flex-start;
     }
     .tools-badges {
@@ -865,7 +858,6 @@ body {
         aspect-ratio: 16 / 10;
     }
     .popup-footer-bar {
-        display: flex;
         flex-direction: column;
         gap: 12px;
         align-items: flex-start;
