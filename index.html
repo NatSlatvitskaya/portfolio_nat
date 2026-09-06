@@ -165,7 +165,7 @@
                 <div class="popup-header-grid">
                     <div class="header-left-col">
                         <h2 class="popup-project-title" id="popup-title">Название проекта</h2>
-                        <p class="popup-project-desc" id="popup-desc">Описание проекта</p>
+                        <div class="popup-project-desc" id="popup-desc">Описание проекта</div>
 
                         <div class="popup-info-block">
                             <h3 class="popup-section-title">Что делала</h3>
@@ -225,7 +225,7 @@
             document.body.classList.toggle('alt-theme');
         });
 
-        // Структура типов карточек сетки по умолчанию (1, 4, 9 — широкие; остальные квадратные)
+        // Структура типов карточек сетки (1, 4, 9 — полноразмерные, остальные квадратные)
         const galleryCardTypes = [
             'card-full', 'card-half', 'card-half',
             'card-full', 'card-half', 'card-half',
@@ -244,7 +244,7 @@
             },
             'MEMORIA': {
                 title: 'Memoria book',
-                desc: 'Команда MB обратилась ко мне с амбициозной, но трогательной задачей: создать визуальный язык, который мог бы передать ценность человеческой памяти, теплоту семейных уз и тонкость работы с личными историями. Цель состояла в том, чтобы айдентика, выделила проект и вызывала доверие у потенциальных клиентов, подчеркивая уникальность и эмоциональную глубину.',
+                desc: 'Команда МВ обратилась ко мне с амбициозной, но трогательной задачей: создать визуальный язык, который мог бы передать ценность человеческой памяти, теплоту семейных уз и тонкость работы с личными историями.<br><br>Цель состояла в том, чтобы айдентика, выделила проект и вызывала доверие у потенциальных клиентов, подчеркивая уникальность и эмоциональную глубину.',
                 tools: ['Ai', 'Fi'],
                 role: 'Брендинг',
                 link: 'https://dprofile.ru/case/121146/memoriabook-l-visual-identity',
@@ -320,27 +320,72 @@
         const popupGallery = document.getElementById('popup-gallery');
         const projectCards = document.querySelectorAll('.project-card');
 
-        // Автоматическая установка обложек плашек на главном экране
+        // Умная установка обложек плашек на главном экране
         projectCards.forEach(card => {
             const cardName = card.getAttribute('data-project');
             const data = projectsData[cardName];
             if (data && data.cover) {
                 const preview = card.querySelector('.card-preview');
                 if (preview) {
-                    const img = new Image();
-                    img.onload = () => {
-                        preview.style.backgroundImage = `url('${data.cover}')`;
-                    };
-                    img.onerror = () => {
-                        const filename = data.cover.split('/').pop();
-                        preview.style.backgroundImage = `url('images/${filename}')`;
-                    };
-                    img.src = data.cover;
+                    const cleanName = data.cover.split('/').pop();
+                    const candidates = [
+                        data.cover,
+                        `images/projects/${cleanName}`,
+                        `images/${cleanName}`,
+                        `images/${cleanName.replace('-', ' ')}`,
+                        cleanName
+                    ];
+
+                    let idx = 0;
+                    function tryNext() {
+                        if (idx >= candidates.length) return;
+                        const img = new Image();
+                        img.onload = () => {
+                            preview.style.backgroundImage = `url('${candidates[idx]}')`;
+                        };
+                        img.onerror = () => {
+                            idx++;
+                            tryNext();
+                        };
+                        img.src = candidates[idx];
+                    }
+                    tryNext();
                 }
             }
         });
 
-        // Клик по карточке проекта (открытие попапа)
+        // Функция построения цепочки поиска путей к изображениям
+        function generateCandidatePaths(src) {
+            const file = src.split('/').pop();
+            const dotIdx = file.lastIndexOf('.');
+            const base = dotIdx !== -1 ? file.substring(0, dotIdx) : file;
+            const ext = dotIdx !== -1 ? file.substring(dotIdx) : '.jpg';
+
+            const baseVariants = [
+                base,
+                base.replace('-', ' '),
+                base.replace(' ', '-'),
+                base.replace(/\s+/g, '')
+            ];
+            const extVariants = [ext, '.jpg', '.JPG', '.png', '.PNG', '.jpeg'];
+
+            const paths = [];
+            const prefixes = ['images/projects/', 'images/', './images/projects/', './images/', ''];
+
+            prefixes.forEach(prefix => {
+                baseVariants.forEach(b => {
+                    extVariants.forEach(e => {
+                        const candidate = prefix + b + e;
+                        if (!paths.includes(candidate)) {
+                            paths.push(candidate);
+                        }
+                    });
+                });
+            });
+            return paths;
+        }
+
+        // Открытие попапа проекта
         projectCards.forEach(card => {
             card.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -354,14 +399,14 @@
                 };
 
                 if (popupTitle) popupTitle.textContent = data.title;
-                if (popupDesc) popupDesc.textContent = data.desc;
+                if (popupDesc) popupDesc.innerHTML = data.desc;
                 if (popupRole) popupRole.textContent = data.role;
 
                 if (popupTools) {
                     popupTools.innerHTML = data.tools.map(t => `<span class="tool-circle">${t}</span>`).join('');
                 }
 
-                // Ссылка на подробности проекта
+                // Ссылки на кейс
                 const moreBtns = document.querySelectorAll('.popup-more-btn');
                 moreBtns.forEach(btn => {
                     if (data.link) {
@@ -373,7 +418,7 @@
                     }
                 });
 
-                // Генерация изображений в галерее попапа
+                // Генерация галереи изображений
                 if (popupGallery) {
                     popupGallery.innerHTML = '';
                     for (let i = 0; i < 9; i++) {
@@ -393,29 +438,21 @@
                         cardDiv.className = `gallery-card ${cardType}`;
 
                         if (imgSrc) {
-                            const filename = imgSrc.split('/').pop();
-                            const filenameSpace = filename.replace('-', ' ');
-                            const filenameDash = filename.replace(' ', '-');
-                            cardDiv.innerHTML = `<img src="${imgSrc}" alt="${data.title} ${i+1}" onerror="
-                                if (!this.dataset.step) {
-                                    this.dataset.step = 1;
-                                    this.src = 'images/${filename}';
-                                } else if (this.dataset.step == 1) {
-                                    this.dataset.step = 2;
-                                    this.src = 'images/projects/${filenameSpace}';
-                                } else if (this.dataset.step == 2) {
-                                    this.dataset.step = 3;
-                                    this.src = 'images/${filenameSpace}';
-                                } else if (this.dataset.step == 3) {
-                                    this.dataset.step = 4;
-                                    this.src = 'images/projects/${filenameDash}';
-                                } else if (this.dataset.step == 4) {
-                                    this.dataset.step = 5;
-                                    this.src = 'images/${filenameDash}';
+                            const candidates = generateCandidatePaths(imgSrc);
+                            const imgElem = document.createElement('img');
+                            imgElem.alt = `${data.title} ${i + 1}`;
+                            
+                            let currentTry = 0;
+                            imgElem.onerror = function() {
+                                currentTry++;
+                                if (currentTry < candidates.length) {
+                                    imgElem.src = candidates[currentTry];
                                 }
-                            ">`;
+                            };
+                            imgElem.src = candidates[0];
+                            cardDiv.appendChild(imgElem);
                         } else {
-                            cardDiv.innerHTML = `<div class="image-placeholder"><span class="img-num">Изображение ${i+1}</span></div>`;
+                            cardDiv.innerHTML = `<div class="image-placeholder"><span class="img-num">Изображение ${i + 1}</span></div>`;
                         }
                         popupGallery.appendChild(cardDiv);
                     }
