@@ -241,7 +241,9 @@ body {
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* Область обложки с наложением эффекта Color Blend */
 .card-preview {
+    position: relative;
     flex-grow: 1;
     background-color: #0b1210;
     background-size: cover;
@@ -249,6 +251,33 @@ body {
     background-repeat: no-repeat;
     border-radius: 6px;
     margin-bottom: 5px;
+    overflow: hidden;
+}
+
+/* Зеленый прямоугольник #20EAA7 с blend mode "Color" в дефолтном состоянии */
+.card-preview::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #20EAA7;
+    mix-blend-mode: color;
+    opacity: 1;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    border-radius: 6px;
+}
+
+/* В розовой теме наложение тонируется в розовый */
+.alt-theme .card-preview::after {
+    background-color: #F98FC8;
+}
+
+/* На ховере прямоугольник скрывается, делая картинку полноцветной */
+.project-card:hover .card-preview::after {
+    opacity: 0;
 }
 
 .card-label {
@@ -324,8 +353,8 @@ body {
     padding: 0 4.2%;
 }
 
-/* display: contents выносит все 5 элементов напрямую в hero-footer, 
-   поэтому браузер делит всё расстояние на 4 абсолютно равных интервала */
+/* display: contents выносит все 5 элементов напрямую в flexbox подвала, 
+   благодаря чему пространство между ними делится на 4 абсолютно равных интервала */
 .footer-left,
 .footer-center,
 .footer-right {
@@ -830,7 +859,7 @@ body {
     .footer-left, .footer-right { padding: 0; flex-wrap: wrap; justify-content: center; gap: 10px; }
 }
 
-/* Фоны на мобильных */
+/* Отображение фонов на мобильных */
 @media (max-width: 900px) {
     .bg-pattern.pattern-1 {
         mix-blend-mode: normal;

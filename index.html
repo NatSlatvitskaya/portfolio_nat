@@ -225,12 +225,14 @@
             document.body.classList.toggle('alt-theme');
         });
 
+        // Структура типов карточек сетки по умолчанию
         const galleryCardTypes = [
             'card-full', 'card-half', 'card-half',
             'card-full', 'card-half', 'card-half',
             'card-half', 'card-half', 'card-full'
         ];
 
+        // Данные для каждого проекта
         const projectsData = {
             'SMART': {
                 title: 'SMART',
@@ -318,17 +320,28 @@
         const popupGallery = document.getElementById('popup-gallery');
         const projectCards = document.querySelectorAll('.project-card');
 
+        // Автоматическая установка обложек плашек на главном экране
         projectCards.forEach(card => {
             const cardName = card.getAttribute('data-project');
             const data = projectsData[cardName];
             if (data && data.cover) {
                 const preview = card.querySelector('.card-preview');
                 if (preview) {
-                    preview.style.backgroundImage = `url('${data.cover}')`;
+                    // Поддержка пути images/projects/ или images/
+                    const img = new Image();
+                    img.onload = () => {
+                        preview.style.backgroundImage = `url('${data.cover}')`;
+                    };
+                    img.onerror = () => {
+                        const filename = data.cover.split('/').pop();
+                        preview.style.backgroundImage = `url('images/${filename}')`;
+                    };
+                    img.src = data.cover;
                 }
             }
         });
 
+        // Клик по карточке проекта (открытие попапа)
         projectCards.forEach(card => {
             card.addEventListener('click', (e) => {
                 e.stopPropagation();
