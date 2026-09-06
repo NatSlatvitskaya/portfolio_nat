@@ -22,12 +22,12 @@
         <header class="hero-header">
             <div class="header-container">
                 <div class="header-left">
-                    <a href="#projects" class="nav-btn">все проекты</a>
+                    <a href="#projects" class="nav-btn">Все проекты</a>
                 </div>
                 <div class="header-center">
                     <h1 class="greeting-text">
-                        Привет, я — Наташа.<br>
-                        <span class="greeting-tag">графический и бренд-дизайнер</span>
+                        Привет, Я — Наташа<br>
+                        <span class="greeting-tag">{графический и бренд-дизайнер}</span>
                     </h1>
                 </div>
                 <div class="header-right">
@@ -41,8 +41,9 @@
             <img src="images/avatar.png" alt="Персонаж Наташи" class="avatar-img">
         </div>
 
-        <!-- Контейнер для 8 интерактивных плашек проектов -->
+        <!-- Контейнер для 8 интерактивных плашек проектов по сетке Figma -->
         <div class="cards-container" id="projects">
+            <!-- NAME 2: верхний левый -->
             <div class="project-card card-smart" data-project="SMART">
                 <div class="card-inner">
                     <div class="card-preview"></div>
@@ -50,6 +51,7 @@
                 </div>
             </div>
 
+            <!-- NAME 8: верхний правый -->
             <div class="project-card card-project-tr" data-project="LIDIA&POGGIO">
                 <div class="card-inner">
                     <div class="card-preview"></div>
@@ -57,6 +59,7 @@
                 </div>
             </div>
 
+            <!-- NAME 1: средний крайний левый -->
             <div class="project-card card-lidia" data-project="AGLY">
                 <div class="card-inner">
                     <div class="card-preview"></div>
@@ -64,6 +67,7 @@
                 </div>
             </div>
 
+            <!-- NAME 3: средний внутренний левый -->
             <div class="project-card card-memoria" data-project="MEMORIA">
                 <div class="card-inner">
                     <div class="card-preview"></div>
@@ -71,6 +75,7 @@
                 </div>
             </div>
 
+            <!-- NAME 5: средний внутренний правый -->
             <div class="project-card card-slet" data-project="SLET">
                 <div class="card-inner">
                     <div class="card-preview"></div>
@@ -78,6 +83,7 @@
                 </div>
             </div>
 
+            <!-- NAME 7: средний крайний правый -->
             <div class="project-card card-smarty" data-project="SMARTY">
                 <div class="card-inner">
                     <div class="card-preview"></div>
@@ -85,6 +91,7 @@
                 </div>
             </div>
 
+            <!-- NAME 4: нижний левый -->
             <div class="project-card card-agly" data-project="ПРОЕКТ 7">
                 <div class="card-inner">
                     <div class="card-preview"></div>
@@ -92,6 +99,7 @@
                 </div>
             </div>
 
+            <!-- NAME 6: нижний правый -->
             <div class="project-card card-project-br" data-project="ПРОЕКТ 8">
                 <div class="card-inner">
                     <div class="card-preview"></div>
@@ -103,8 +111,8 @@
         <!-- Подвал страницы (Footer) -->
         <footer class="hero-footer">
             <div class="footer-left">
-                <span class="tag-text">#брендинг</span>
-                <span class="tag-text">#веб-дизайн</span>
+                <span class="tag-text">{брендинг}</span>
+                <span class="tag-text">{вэб-дизайн}</span>
             </div>
 
             <div class="footer-center">
@@ -140,8 +148,8 @@
             </div>
 
             <div class="footer-right">
-                <span class="tag-text">#коммуникация</span>
-                <span class="tag-text">#иллюстрация</span>
+                <span class="tag-text">{коммуникация}</span>
+                <span class="tag-text">{иллюстрация}</span>
             </div>
         </footer>
 
@@ -217,14 +225,12 @@
             document.body.classList.toggle('alt-theme');
         });
 
-        // Структура типов карточек сетки по умолчанию
         const galleryCardTypes = [
             'card-full', 'card-half', 'card-half',
             'card-full', 'card-half', 'card-half',
             'card-half', 'card-half', 'card-full'
         ];
 
-        // Данные для каждого проекта
         const projectsData = {
             'SMART': {
                 title: 'SMART',
@@ -312,7 +318,6 @@
         const popupGallery = document.getElementById('popup-gallery');
         const projectCards = document.querySelectorAll('.project-card');
 
-        // Автоматическая установка обложек плашек на главном экране
         projectCards.forEach(card => {
             const cardName = card.getAttribute('data-project');
             const data = projectsData[cardName];
@@ -324,7 +329,6 @@
             }
         });
 
-        // Клик по карточке проекта
         projectCards.forEach(card => {
             card.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -345,7 +349,6 @@
                     popupTools.innerHTML = data.tools.map(t => `<span class="tool-circle">${t}</span>`).join('');
                 }
 
-                // Динамическая ссылка на кейс Dprofile
                 const moreBtns = document.querySelectorAll('.popup-more-btn');
                 moreBtns.forEach(btn => {
                     if (data.link) {
@@ -357,7 +360,6 @@
                     }
                 });
 
-                // Генерация сетки изображений для попапа
                 if (popupGallery) {
                     popupGallery.innerHTML = '';
                     for (let i = 0; i < 9; i++) {
