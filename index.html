@@ -83,7 +83,7 @@
                 </div>
             </div>
 
-            <!-- NAME 7: средний крайний правый -->
+            <!-- NAME 7: средний крайний правый (SMARTY) -->
             <div class="project-card card-smarty" data-project="SMARTY">
                 <div class="card-inner">
                     <div class="card-preview"></div>
@@ -182,7 +182,7 @@
                             </div>
                         </div>
 
-                        <a href="https://dprofile.ru/case/121146/memoriabook-l-visual-identity" target="_blank" class="popup-more-btn header-more-btn">
+                        <a href="#" target="_blank" class="popup-more-btn header-more-btn">
                             Подробнее о проекте <span class="btn-arrow">&rarr;</span>
                         </a>
                     </div>
@@ -196,7 +196,7 @@
                 <!-- Подвал попапа -->
                 <div class="popup-footer-bar">
                     <a href="https://t.me/NatSlatvitskaya" target="_blank" class="popup-telegram-link">@NatSlatvitskaya</a>
-                    <a href="https://dprofile.ru/case/121146/memoriabook-l-visual-identity" target="_blank" class="popup-more-btn footer-more-btn">
+                    <a href="#" target="_blank" class="popup-more-btn footer-more-btn">
                         Подробнее о проекте <span class="btn-arrow">&rarr;</span>
                     </a>
                 </div>
@@ -225,14 +225,14 @@
             document.body.classList.toggle('alt-theme');
         });
 
-        // Структура типов карточек сетки (1, 4, 9 — полноразмерные, остальные квадратные)
+        // Формат сетки (1, 4, 9 — полноразмерные, остальные квадратные)
         const galleryCardTypes = [
             'card-full', 'card-half', 'card-half',
             'card-full', 'card-half', 'card-half',
             'card-half', 'card-half', 'card-full'
         ];
 
-        // Данные для каждого проекта
+        // База данных всех проектов
         const projectsData = {
             'SMART': {
                 title: 'SMART',
@@ -261,6 +261,25 @@
                     { src: 'images/projects/memoria-9.jpg', type: 'card-full' }
                 ]
             },
+            'SMARTY': {
+                title: 'Smarty',
+                desc: 'ГК Smart — это группа компаний, которая ведет деятельность в сфере EdTech. Более 20 000 студентов получают психологическое образование по различным направлениям.<br><br>Визуальный стиль отражает современный подход к образованию, экспертность и психологический комфорт.<br><br>У Smart уже были базовые элементы айдентики.<br>Моя задача заключалась в обновлении и доработке визуальной системы проекта, адаптации и интеграции существующих элементов.',
+                tools: ['Ai', 'Fi'],
+                role: 'Разработка персонажа, интеграция в айдентику, мерч',
+                link: 'https://dprofile.ru/case/131668/maskot-smarty-l-identity',
+                cover: 'images/projects/smarty-cover.jpg',
+                images: [
+                    { src: 'images/projects/smarty-1.jpg', type: 'card-full' },
+                    { src: 'images/projects/smarty-2.jpg', type: 'card-half' },
+                    { src: 'images/projects/smarty-3.jpg', type: 'card-half' },
+                    { src: 'images/projects/smarty-4.jpg', type: 'card-full' },
+                    { src: 'images/projects/smarty-5.jpg', type: 'card-half' },
+                    { src: 'images/projects/smarty-6.jpg', type: 'card-half' },
+                    { src: 'images/projects/smarty-7.jpg', type: 'card-half' },
+                    { src: 'images/projects/smarty-8.jpg', type: 'card-half' },
+                    { src: 'images/projects/smarty-9.jpg', type: 'card-full' }
+                ]
+            },
             'LIDIA&POGGIO': {
                 title: 'LIDIA&POGGIO',
                 desc: 'Описание проекта LIDIA&POGGIO. Комплексный ребрендинг и оформление маркетинг-материалов.',
@@ -283,14 +302,6 @@
                 tools: ['Ai', 'Ps', 'Mj'],
                 role: 'Айдентика, Графика, Мерч',
                 cover: 'images/projects/slet-cover.jpg',
-                images: []
-            },
-            'SMARTY': {
-                title: 'SMARTY',
-                desc: 'Описание проекта SMARTY. Создание цифрового бренда и интерфейса приложения.',
-                tools: ['Fi', 'Ps', 'Ai'],
-                role: 'Сайты, UI/UX, Брендинг',
-                cover: 'images/projects/smarty-cover.jpg',
                 images: []
             },
             'ПРОЕКТ 7': {
