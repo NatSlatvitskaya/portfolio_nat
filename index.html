@@ -14,8 +14,8 @@
     <div class="bg-pattern pattern-3"></div>
     <div class="bg-pattern pattern-4"></div>
 
-    <!-- Изолированный слой подрагивающего ретро-шума -->
-    <div class="retro-noise"></div>
+    <!-- Изолированный холст винтажного плёночного шума и царапин -->
+    <canvas class="retro-noise" id="retro-noise"></canvas>
 
     <!-- Свечение за курсором -->
     <div class="cursor-glow" id="cursor-glow"></div>
@@ -504,6 +504,88 @@
                 }
             });
         }
+
+        // --- Ретро-эффект винтажной киноплёнки (Film Grain, Scratches & Dust) ---
+        (function() {
+            const canvas = document.getElementById('retro-noise');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let w, h;
+
+            function resize() {
+                w = canvas.width = Math.ceil(window.innerWidth / 2.5);
+                h = canvas.height = Math.ceil(window.innerHeight / 2.5);
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            let lastTime = 0;
+            const fps = 14; // Аутентичная частота кадров старой киноплёнки (14 fps)
+            const interval = 1000 / fps;
+
+            function render(currentTime) {
+                requestAnimationFrame(render);
+                const delta = currentTime - lastTime;
+                if (delta < interval) return;
+                lastTime = currentTime - (delta % interval);
+
+                ctx.clearRect(0, 0, w, h);
+
+                // 1. Мелкозернистый шум киноплёнки
+                const imgData = ctx.createImageData(w, h);
+                const buf = new Uint32Array(imgData.data.buffer);
+                const len = buf.length;
+                for (let i = 0; i < len; i += 2) {
+                    if (Math.random() < 0.12) {
+                        const val = (Math.random() * 200 + 55) | 0;
+                        buf[i] = (60 << 24) | (val << 16) | (val << 8) | val;
+                    }
+                }
+                ctx.putImageData(imgData, 0, 0);
+
+                // 2. Вертикальные царапины (бегущие полосы проектора)
+                const scratchCount = Math.random() < 0.8 ? (1 + Math.random() * 3 | 0) : 0;
+                for (let s = 0; s < scratchCount; s++) {
+                    const x = (Math.random() * w) | 0;
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${Math.random() * 0.45 + 0.25})`;
+                    ctx.lineWidth = Math.random() < 0.3 ? 1.5 : 0.8;
+                    ctx.beginPath();
+                    ctx.moveTo(x + (Math.random() - 0.5) * 3, 0);
+                    ctx.lineTo(x + (Math.random() - 0.5) * 6, h);
+                    ctx.stroke();
+                }
+
+                // 3. Белые пылинки, крапинки и соринки
+                const dustCount = (Math.random() * 12 + 6) | 0;
+                for (let d = 0; d < dustCount; d++) {
+                    const dx = Math.random() * w;
+                    const dy = Math.random() * h;
+                    const r = Math.random() * 1.8 + 0.4;
+                    ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.6 + 0.3})`;
+                    ctx.beginPath();
+                    ctx.arc(dx, dy, r, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                // 4. Случайные изогнутые волоски и ворсинки
+                if (Math.random() < 0.45) {
+                    ctx.strokeStyle = `rgba(255, 255, 255, ${Math.random() * 0.4 + 0.3})`;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    let hx = Math.random() * w;
+                    let hy = Math.random() * h;
+                    ctx.moveTo(hx, hy);
+                    const segments = (Math.random() * 3 + 2) | 0;
+                    for (let seg = 0; seg < segments; seg++) {
+                        hx += (Math.random() - 0.5) * 16;
+                        hy += (Math.random() - 0.5) * 16;
+                        ctx.lineTo(hx, hy);
+                    }
+                    ctx.stroke();
+                }
+            }
+            requestAnimationFrame(render);
+        })();
     </script>
 </body>
 </html>
