@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ПОЛНЫЙ СТИЛЕВОЙ ФАЙЛ STYLE.CSS — ЧАСТЬ 1 ИЗ 2 (С ОБНОВЛЕННЫМИ ФОНАМИ И СВЕЧЕНИЕМ)
+   ПОЛНЫЙ СТИЛЕВОЙ ФАЙЛ STYLE.CSS — ЧАСТЬ 1 ИЗ 2
    ========================================================================== */
 
 /* --- Подключение шрифта SF UI Display --- */
@@ -113,17 +113,19 @@ body.theme-4 .cursor-glow {
     opacity: 0;
 }
 
+/* 3-я тема: режим color-dodge */
 .bg-pattern.pattern-3 {
     background-image: url('images/flowers-bg.jpg');
     z-index: -2;
-    mix-blend-mode: screen;
+    mix-blend-mode: color-dodge;
     opacity: 0;
 }
 
+/* 4-я тема: режим color-dodge */
 .bg-pattern.pattern-4 {
     background-image: url('images/flowers-bg2.jpg');
     z-index: -2;
-    mix-blend-mode: screen;
+    mix-blend-mode: color-dodge;
     opacity: 0;
 }
 
@@ -919,11 +921,10 @@ body.theme-4 .bg-pattern.pattern-3 { opacity: 0; }
 
 /* Отображение фонов на мобильных */
 @media (max-width: 900px) {
-    .bg-pattern.pattern-1 {
-        mix-blend-mode: normal;
-        opacity: 0.3;
-    }
-    .bg-pattern.pattern-2 {
+    .bg-pattern.pattern-1,
+    .bg-pattern.pattern-2,
+    .bg-pattern.pattern-3,
+    .bg-pattern.pattern-4 {
         mix-blend-mode: normal;
         opacity: 0.3;
     }
