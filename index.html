@@ -8,9 +8,11 @@
 </head>
 <body>
 
-    <!-- Динамические фоны страницы -->
+    <!-- Динамические фоны страницы (4 фоновые темы) -->
     <div class="bg-pattern pattern-1"></div>
     <div class="bg-pattern pattern-2"></div>
+    <div class="bg-pattern pattern-3"></div>
+    <div class="bg-pattern pattern-4"></div>
 
     <!-- Свечение за курсором -->
     <div class="cursor-glow" id="cursor-glow"></div>
@@ -212,6 +214,10 @@
             });
         }
 
+        // Переключение 4 фоновых тем по клику на свободное место страницы
+        const themes = ['theme-1', 'theme-2', 'theme-3', 'theme-4'];
+        let currentThemeIndex = 0;
+
         document.addEventListener('click', (e) => {
             if (
                 e.target.closest('a') || 
@@ -222,7 +228,13 @@
             ) {
                 return;
             }
-            document.body.classList.toggle('alt-theme');
+            
+            document.body.classList.remove(themes[currentThemeIndex], 'alt-theme');
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            document.body.classList.add(themes[currentThemeIndex]);
+            if (themes[currentThemeIndex] === 'theme-2') {
+                document.body.classList.add('alt-theme');
+            }
         });
 
         // Формат сетки (1, 4, 9 — полноразмерные, остальные квадратные)
